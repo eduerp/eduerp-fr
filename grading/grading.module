@@ -34,7 +34,7 @@ function grading_menu() {
   );
 
   $items['grading/stats'] = array(
-    'title'=>'Grading Departmental Stats',
+    'title' => 'Grading Departmental Stats',
     'page callback' => 'drupal_get_form',
     'page arguments'=> array('grading_stats_department_form'),
     'access arguments' => array('view grading'),
@@ -49,7 +49,7 @@ function grading_menu() {
   );
 
   $items['grading/statsuni'] = array(
-    'title'=>'Grading University Stats',
+    'title' => 'Grading University Stats',
     'page callback' => 'drupal_get_form',
     'page arguments'=> array('grading_stats_uni_form'),
     'access arguments' => array('view grading'),
@@ -78,7 +78,7 @@ function grading_menu() {
   );
 
   $items['grading/studentdetails'] = array(
-    'title'=>'Grading Student Details',
+    'title' => 'Grading Student Details',
     'page callback' => 'drupal_get_form',
     'page arguments'=> array('grading_student_details_form'),
     'access arguments' => array('view grading'),
@@ -597,7 +597,7 @@ function grading_stats_department_form(&$obj) {
     '#type' => 'select',
     '#default_value' => $departmentdefault,
     '#options' => _grading_department_list(),
-    '#title' => 'Department',
+    '#title' => t('Department'),
     '#ahah' =>array(
       'event'   => 'change',
       'path'    => 'grading/ahahstats',
@@ -612,7 +612,7 @@ function grading_stats_department_form(&$obj) {
     '#type' => 'select',
     '#default_value' => $sessiondefault,
     '#options' => _grading_session_list(),
-    '#title' => 'Session',
+    '#title' => t('Session'),
     '#ahah' =>array(
       'event'   => 'change',
       'path'    => 'grading/ahahstats',
@@ -627,7 +627,7 @@ function grading_stats_department_form(&$obj) {
     '#type' => 'select',
     '#default_value' => $semesterdefault,
     '#options' => _grading_semester_list(),
-    '#title' => 'Semester',
+    '#title' => t('Semester'),
     '#ahah' =>array(
       'event'   => 'change',
       'path'    => 'grading/ahahstats',
@@ -642,7 +642,7 @@ function grading_stats_department_form(&$obj) {
     '#type' => 'select',
     '#default_value' => $leveldefault,
     '#options' => _grading_level_list(),
-    '#title' => 'Level',
+    '#title' => t('Level'),
     '#ahah' =>array(
       'event'   => 'change',
       'path'    => 'grading/ahahstats',
@@ -655,7 +655,7 @@ function grading_stats_department_form(&$obj) {
 
   $form['updatebutton'] = array(
     '#type' => 'button',
-    '#value' => 'Show Grade Statistics and Approval Status for above selection',
+    '#value' => t('Show Grade Statistics and Approval Status for above selection'),
     '#ahah' => array(
       'path'    => 'grading/ahahstats',
       'wrapper' => 'stats_here',
@@ -876,22 +876,22 @@ function _grading_ahah_stats() {
   $output .= '<tr><th valign="top" class="table-label" colspan="2">DEPARTMENTAL SUMMARY RESULTS</th></tr>';
 
   $output .= '<tr>';
-  $output .= '<td valign="top" class="table-label">Total No. of Registered Students</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Total No. of Registered Students') . '</td>';
   $output .= '<td valign="top">' . $summaryrow->number_students . '</td>';
   $output .= '</tr>';
 
   $output .= '<tr>';
-  $output .= '<td valign="top" class="table-label">No. of Students that Completed Exams</td>';
+  $output .= '<td valign="top" class="table-label">' . t('No. of Students that Completed Exams') . '</td>';
   $output .= '<td valign="top">' . $summaryrow->sumfully . '</td>';
   $output .= '</tr>';
 
   $output .= '<tr>';
-  $output .= '<td valign="top" class="table-label">No. of Students that Partially Completed Exams</td>';
+  $output .= '<td valign="top" class="table-label">' . t('No. of Students that Partially Completed Exams') . '</td>';
   $output .= '<td valign="top">' . ($summaryrow->sumpart - $summaryrow->sumfully) . '</td>';
   $output .= '</tr>';
 
   $output .= '<tr>';
-  $output .= '<td valign="top" class="table-label">Number of Absent Students</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Number of Absent Students') . '</td>';
   $output .= '<td valign="top">' . $summaryrow->sumnone . '</td>';
   $output .= '</tr>';
 
@@ -918,7 +918,7 @@ function _grading_ahah_stats() {
   while ($programmerow = db_fetch_object($programmerows)) {
     if ($first) {
       $output .= '<tr><td colspan="2"><br /></td></tr>';
-      $output .= '<tr><td colspan="2">View Programme Details...</td></tr>';
+      $output .= '<tr><td colspan="2">' . t('View Programme Details...') . '</td></tr>';
       $first = false;
     }
     $programmeenc = rawurlencode($programmerow->programme);
@@ -928,21 +928,21 @@ function _grading_ahah_stats() {
     //elseif ($programmerow->ca2l  == 1) $output .= 'Continuous Assessment 2 Ready for Approval by HOD';
     //elseif ($programmerow->ca3l  == 1) $output .= 'Continuous Assessment 3 Ready for Approval by HOD';
     //elseif ($programmerow->ca4l  == 1) $output .= 'Continuous Assessment 4 Ready for Approval by HOD';
-    if ($programmerow->examl == 1) $output .= 'All Lecturers have Submitted Semester Exam Results';
+    if ($programmerow->examl == 1) $output .= t('All Lecturers have Submitted Semester Exam Results');
     //elseif ($programmerow->ca1l  == 0) $output .= 'Waiting on some Lecturer Submissions for Continuous Assessment 1';
     //elseif ($programmerow->ca2l  == 0) $output .= 'Waiting on some Lecturer Submissions for Continuous Assessment 2';
     //elseif ($programmerow->ca3l  == 0) $output .= 'Waiting on some Lecturer Submissions for Continuous Assessment 3';
     //elseif ($programmerow->ca4l  == 0) $output .= 'Waiting on some Lecturer Submissions for Continuous Assessment 4';
-    elseif ($programmerow->examl == 0) $output .= 'Waiting on some Lecturer Submissions for Semester Exam';
-    elseif ($programmerow->examl == 2) $output .= 'All Departments have Approved Semester Exam Results';
-    elseif ($programmerow->examl == 3) $output .= 'All Faculties have Approved Semester Exam Results';
-    elseif ($programmerow->examl == 4) $output .= 'Registrar has Approved Semester Exam Results';
-    else $output .= 'Semester Exam Results Fully Approved';
+    elseif ($programmerow->examl == 0) $output .= t('Waiting on some Lecturer Submissions for Semester Exam');
+    elseif ($programmerow->examl == 2) $output .= t('All Departments have Approved Semester Exam Results');
+    elseif ($programmerow->examl == 3) $output .= t('All Faculties have Approved Semester Exam Results');
+    elseif ($programmerow->examl == 4) $output .= t('Registrar has Approved Semester Exam Results');
+    else $output .= t('Semester Exam Results Fully Approved');
     $output .= '</td></tr>';
   }
 
   $output .= '<tr><td colspan="2"><br /></td></tr>';
-  $output .= '<tr><td colspan="2">Departmental Grading Approval Status...</td></tr>';
+  $output .= '<tr><td colspan="2">' . t('Departmental Grading Approval Status...') . '</td></tr>';
 
   // Find Registrar uid
   $inroles = "'Registrar', 'University Grade Editor'";
@@ -978,13 +978,13 @@ function _grading_ahah_stats() {
   $output .= '<tr><td colspan="2"></td></tr>';
 
   if ($summaryrow->examlocked == 0) {
-    $output .= '<tr><td colspan="2">Waiting on some Lecturer Submissions for Semester Exam</td></tr>';
+    $output .= '<tr><td colspan="2">' . t('Waiting on some Lecturer Submissions for Semester Exam') . '</td></tr>';
   }
   elseif ($summaryrow->examlocked == 1) {
-    $output .= '<tr><td colspan="2">All Lecturers have Submitted Semester Exam Results</td></tr>';
+    $output .= '<tr><td colspan="2">' . t('All Lecturers have Submitted Semester Exam Results') . '</td></tr>';
   }
   elseif ($summaryrow->examlocked == 2) {
-    $output .= '<tr><td colspan="2">All Departments have Approved Semester Exam Results</td></tr>';
+    $output .= '<tr><td colspan="2">' . t('All Departments have Approved Semester Exam Results') . '</td></tr>';
   }
   elseif ($summaryrow->examlocked == 3 && variable_get('RegistrarApprovesGrades', 0)) {
     $registrar_uid_array = explode(',', $registrar_uid);
@@ -998,11 +998,11 @@ function _grading_ahah_stats() {
       $_SESSION['eduerpregistrarapprovalform']->level = $level;
       $_SESSION['eduerpregistrarapprovalform']->session = $session;
       $_SESSION['eduerpregistrarapprovalform']->semester = $semester;
-      $_SESSION['eduerpregistrarapprovalform']->gradestext = 'Semester Exam';
+      $_SESSION['eduerpregistrarapprovalform']->gradestext = t('Semester Exam');
       $_SESSION['eduerpregistrarapprovalform']->fieldtoapprove = 'field_examscorelocked_value';
     }
     else {
-      $output .= '<tr><td colspan="2">All Faculties have Approved Semester Exam Results</td></tr>';
+      $output .= '<tr><td colspan="2">' . t('All Faculties have Approved Semester Exam Results') . '</td></tr>';
     }
   }
   elseif ($summaryrow->examlocked == 4 || $summaryrow->examlocked == 3) {
@@ -1016,52 +1016,52 @@ function _grading_ahah_stats() {
       $_SESSION['eduerpvcapprovalform']->level = $level;
       $_SESSION['eduerpvcapprovalform']->session = $session;
       $_SESSION['eduerpvcapprovalform']->semester = $semester;
-      $_SESSION['eduerpvcapprovalform']->gradestext = 'Semester Exam';
+      $_SESSION['eduerpvcapprovalform']->gradestext = t('Semester Exam');
       $_SESSION['eduerpvcapprovalform']->fieldtoapprove = 'field_examscorelocked_value';
     }
     else {
       if (variable_get('RegistrarApprovesGrades', 0)) {
-        $output .= '<tr><td colspan="2">Registrar has Approved Semester Exam Results</td></tr>';
+        $output .= '<tr><td colspan="2">' . t('Registrar has Approved Semester Exam Results') . '</td></tr>';
       }
       else {
-        $output .= '<tr><td colspan="2">All Faculties have Approved Semester Exam Results</td></tr>';
+        $output .= '<tr><td colspan="2">' . t('All Faculties have Approved Semester Exam Results') . '</td></tr>';
       }
     }
   }
   elseif ($summaryrow->examlocked == 5) {
-    $output .= '<tr><td colspan="2">Semester Exam Results Fully Approved</td></tr>';
+    $output .= '<tr><td colspan="2">' . t('Semester Exam Results Fully Approved') . '</td></tr>';
   }
 
   $output .= '</tbody></table>';
 
   if (empty($registrar_uid) && variable_get('RegistrarApprovesGrades', 0)) {
-    $output .= 'THERE IS NO REGISTRAR, ONE MUST BE ASSIGNED';
+    $output .= t('THERE IS NO REGISTRAR, ONE MUST BE ASSIGNED');
   }
   elseif (empty($vc_uid)) {
-    $output .= 'THERE IS NO VICE CHANCELLOR, ONE MUST BE ASSIGNED';
+    $output .= t('THERE IS NO VICE CHANCELLOR, ONE MUST BE ASSIGNED');
   }
   elseif ($showregistrarform) {
     // $output .= drupal_get_form('approve_grades_registrar_form');
-    $output .= '<a href="' . $base_url . '/grading/eduerpregistrarapprovalform">Click here to go to a Form for Approval of ' . $_SESSION['eduerpregistrarapprovalform']->gradestext . " for level $level</a>";
+    $output .= '<a href="' . $base_url . '/grading/eduerpregistrarapprovalform">' . t('Click here to go to a Form for Approval of !gradestext for level !level', array('!gradestext' => $_SESSION['eduerpregistrarapprovalform']->gradestext, '!level' => $level)) . '</a>';
   }
   elseif ($showvcform) {
     // $output .= drupal_get_form('approve_grades_vc_form');
-    $output .= '<a href="' . $base_url . '/grading/eduerpvcapprovalform">Click here to go to a Form for Approval of ' . $_SESSION['eduerpvcapprovalform']->gradestext . " for level $level</a>";
+    $output .= '<a href="' . $base_url . '/grading/eduerpvcapprovalform">' . t('Click here to go to a Form for Approval of !gradestext for level !level', array('!gradestext' => $_SESSION['eduerpvcapprovalform']->gradestext, '!level' => $level)) . '</a>';
   }
 
 
   $output .= '<br /><br /><table class="body-table"><tbody>';
 
-  $output .= '<tr><th valign="top" class="table-label" colspan="8">Approval Details for all Courses taken by Students in this Department...</th></tr>';
+  $output .= '<tr><th valign="top" class="table-label" colspan="8">' . t('Approval Details for all Courses taken by Students in this Department...') . '</th></tr>';
 
-  $output .= '<td valign="top" class="table-label">Course URL</td>';
-  $output .= '<td valign="top" class="table-label">Student' . "'s Programme</td>";
+  $output .= '<td valign="top" class="table-label">' . t('Course URL') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t("Student's Programme") . '</td>';
   //$output .= '<td valign="top" class="table-label">Student' . "'s Department</td>"; // All will point to current screen in any case!
-  $output .= '<td valign="top" class="table-label">Continuous Assessment 1</td>';
-  $output .= '<td valign="top" class="table-label">Continuous Assessment 2</td>';
-  $output .= '<td valign="top" class="table-label">Continuous Assessment 3</td>';
-  $output .= '<td valign="top" class="table-label">Continuous Assessment 4</td>';
-  $output .= '<td valign="top" class="table-label">Semester Exam</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Continuous Assessment 1') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Continuous Assessment 2') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Continuous Assessment 3') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Continuous Assessment 4') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Semester Exam') . '</td>';
 
   $sql = "SELECT
       c.field_code_value AS coursecode,
@@ -1111,7 +1111,7 @@ function _grading_ahah_stats() {
     $output .= '<td><a href="' . $base_url . "/gpa?programme={$programmeenc}&level={$level}&session={$sessionenc}&semester={$semester}" . '">' . $courserow->programme . '</a></td>';
     //$output .= '<td><a href="' . $base_url . "/grading/stats?department={$departmentenc}&level={$level}&session={$sessionenc}&semester={$semester}" . '">' . $courserow->department . '</a></td>';
 
-    $approvals = array('Lecturers need to Submit', 'Submitted by Lecturers', 'Approved by Department', 'Approved by Faculty', 'Approved by Registrar', 'Fully Approved');
+    $approvals = array(t('Lecturers need to Submit'), t('Submitted by Lecturers'), t('Approved by Department'), t('Approved by Faculty'), t('Approved by Registrar'), t('Fully Approved'));
     if ($ca_approved_onebyone && $number_of_ca >= 1) {
       $output .= '<td>' . $approvals[$courserow->ca1l] . '</td>';
     }
@@ -1157,11 +1157,11 @@ function _grading_ahah_stats() {
  * @global stdClass $_SESSION['eduerpregistrarapprovalform'] already contains values needed for the form.
  */
 function approve_grades_registrar_form($form_state) {
-  $form['departmentname'] = array('#value' => '<b>Department: ' . $_SESSION['eduerpregistrarapprovalform']->department . '</b>');
+  $form['departmentname'] = array('#value' => '<b>' . t('Department') . ': ' . $_SESSION['eduerpregistrarapprovalform']->department . '</b>');
 
   $form['comment'] = array(
     '#type' => 'textarea',
-    '#title' => 'Enter a comment on the grades for the Vice Chancellor',
+    '#title' => t('Enter a comment on the grades for the Vice Chancellor'),
     '#cols' => 80,
     '#rows' => 5,
     '#required' => TRUE
@@ -1177,7 +1177,7 @@ function approve_grades_registrar_form($form_state) {
   $form['fieldtoapprove'] = array('#type' => 'value', '#value' => $_SESSION['eduerpregistrarapprovalform']->fieldtoapprove);
   $form['gradestext'] = array('#type' => 'value', '#value' => $_SESSION['eduerpregistrarapprovalform']->gradestext);
 
-  $form['submit'] = array('#type' => 'submit', '#value' => 'Approve ' . $_SESSION['eduerpregistrarapprovalform']->gradestext . ' for level ' . $_SESSION['eduerpregistrarapprovalform']->level);
+  $form['submit'] = array('#type' => 'submit', '#value' => t('Approve !gradestext for level !level', array('!gradestext' => $_SESSION['eduerpregistrarapprovalform']->gradestext, '!level' => $_SESSION['eduerpregistrarapprovalform']->level)));
 
   return $form;
 }
@@ -1188,7 +1188,7 @@ function approve_grades_registrar_form($form_state) {
  */
 function approve_grades_registrar_form_validate($form, &$form_state) {
   if (empty($form_state['values']['comment'])) {
-    form_set_error('comment', 'You must enter a comment for the Vice Chancellor!');
+    form_set_error('comment', t('You must enter a comment for the Vice Chancellor!'));
   }
 }
 
@@ -1270,23 +1270,23 @@ function approve_grades_registrar_form_submit($form, &$form_state) {
       $user_profile = NULL;
     }
 
-    $subject = "$gradestext for $department/$level/$session/$semester Approved by $name";
+    $subject = t('!gradestext for !departmentlevelsessionsemester Approved by !name', array('!gradestext' => $gradestext, '!departmentlevelsessionsemester' => "$department/$level/$session/$semester", '!name' => $name));
 
     $body = '';
     if (!empty($user_profile->profile_first_name) && !empty($user_profile->profile_last_name)) {
       $middle = '';
       if (!empty($user_profile->profile_middle_name)) $middle = $user_profile->profile_middle_name . ' ';
-      $body .= "Dear $user_profile->profile_first_name {$middle}$user_profile->profile_last_name,\n\n";
+      $body .= t('Dear !name', array('!name' => "$user_profile->profile_first_name {$middle}$user_profile->profile_last_name")) . ",\n\n";
     }
 
-    $body .= "I have approved $gradestext\n\n";
-    $body .= "URL: $department_url\n";
-    $body .= "Department: $department\n";
-    $body .= "Faculty: $college\n";
-    $body .= "Level: $level\n";
-    $body .= "Session: $session\n";
-    $body .= "semester: $semester\n\n";
-    $body .= "Registrar's comment...\n";
+    $body .= t('I have approved !gradestext', array('!gradestext' => $gradestext)) . "\n\n";
+    $body .= t('URL') . ": $department_url\n";
+    $body .= t('Department') . ": $department\n";
+    $body .= t('Faculty') . ": $college\n";
+    $body .= t('Level') . ": $level\n";
+    $body .= t('Session') . ": $session\n";
+    $body .= t('semester') . ": $semester\n\n";
+    $body .= t("Registrar's comment") . "...\n";
     $body .= str_replace('<br />', "\n", $comment);
     $body .= "\n\n{$name}\n";
 
@@ -1341,11 +1341,11 @@ function approve_grades_registrar_form_submit($form, &$form_state) {
  * @global stdClass $_SESSION['eduerpvcapprovalform'] already contains values needed for the form.
  */
 function approve_grades_vc_form($form_state) {
-  $form['departmentname'] = array('#value' => '<b>Department: ' . $_SESSION['eduerpvcapprovalform']->department . '</b>');
+  $form['departmentname'] = array('#value' => '<b>' . t('Department') . ': ' . $_SESSION['eduerpvcapprovalform']->department . '</b>');
 
   $form['comment'] = array(
     '#type' => 'textarea',
-    '#title' => 'Enter a comment on the grades for the Record',
+    '#title' => t('Enter a comment on the grades for the Record'),
     '#cols' => 80,
     '#rows' => 5,
     '#required' => TRUE
@@ -1360,7 +1360,7 @@ function approve_grades_vc_form($form_state) {
   $form['fieldtoapprove'] = array('#type' => 'value', '#value' => $_SESSION['eduerpvcapprovalform']->fieldtoapprove);
   $form['gradestext'] = array('#type' => 'value', '#value' => $_SESSION['eduerpvcapprovalform']->gradestext);
 
-  $form['submit'] = array('#type' => 'submit', '#value' => 'Approve ' . $_SESSION['eduerpvcapprovalform']->gradestext . ' for level ' . $_SESSION['eduerpvcapprovalform']->level);
+  $form['submit'] = array('#type' => 'submit', '#value' => t('Approve !gradestext for level !level', array('!gradestext' => $_SESSION['eduerpvcapprovalform']->gradestext, '!level' => $_SESSION['eduerpvcapprovalform']->level)));
 
   return $form;
 }
@@ -1371,7 +1371,7 @@ function approve_grades_vc_form($form_state) {
  */
 function approve_grades_vc_form_validate($form, &$form_state) {
   if (empty($form_state['values']['comment'])) {
-    form_set_error('comment', 'You must enter a comment for the Record!');
+    form_set_error('comment', t('You must enter a comment for the Record!'));
   }
 }
 
@@ -1471,7 +1471,7 @@ function approve_grades_vc_form_submit($form, &$form_state) {
     $name = "$user_profile->profile_first_name {$middle}$user_profile->profile_last_name";
   }
 
-  $subject = "$gradestext for $department/$level/$session/$semester Approved by $name";
+  $subject = t('!gradestext for !departmentlevelsessionsemester Approved by !name', array('!gradestext' => $gradestext, '!departmentlevelsessionsemester' => "$department/$level/$session/$semester", '!name' => $name));
 
   $node = new stdClass();
   $node->type                            = 'approval';
@@ -1675,7 +1675,7 @@ function grading_stats_uni_form(&$obj) {
     '#type' => 'select',
     '#default_value' => $sessiondefault,
     '#options' => _grading_session_list(),
-    '#title' => 'Session',
+    '#title' => t('Session'),
     '#ahah' =>array(
       'event'   => 'change',
       'path'    => 'grading/ahahstatsuni',
@@ -1690,7 +1690,7 @@ function grading_stats_uni_form(&$obj) {
     '#type' => 'select',
     '#default_value' => $semesterdefault,
     '#options' => _grading_semester_list(),
-    '#title' => 'Semester',
+    '#title' => t('Semester'),
     '#ahah' =>array(
       'event'   => 'change',
       'path'    => 'grading/ahahstatsuni',
@@ -1704,7 +1704,7 @@ function grading_stats_uni_form(&$obj) {
   $form['level'] = array(
     '#type' => 'select',
     '#options' => _grading_level_list_any(),
-    '#title' => 'Level',
+    '#title' => t('Level'),
     '#ahah' =>array(
       'event'   => 'change',
       'path'    => 'grading/ahahstatsuni',
@@ -1717,7 +1717,7 @@ function grading_stats_uni_form(&$obj) {
   $form['college'] = array(
     '#type' => 'select',
     '#options' => _grading_college_list_any(),
-    '#title' => 'Faculty',
+    '#title' => t('Faculty'),
     '#ahah' =>array(
       'event'   => 'change',
       'path'    => 'grading/ahahstatsuni',
@@ -1730,7 +1730,7 @@ function grading_stats_uni_form(&$obj) {
   $form['department'] = array(
     '#type' => 'select',
     '#options' => _grading_department_list_any(),
-    '#title' => 'Department',
+    '#title' => t('Department'),
     '#ahah' =>array(
       'event'   => 'change',
       'path'    => 'grading/ahahstatsuni',
@@ -1743,7 +1743,7 @@ function grading_stats_uni_form(&$obj) {
   $form['programme'] = array(
     '#type' => 'select',
     '#options' => _grading_programme_list_any(),
-    '#title' => 'Programme',
+    '#title' => t('Programme'),
     '#ahah' =>array(
       'event'   => 'change',
       'path'    => 'grading/ahahstatsuni',
@@ -1755,7 +1755,7 @@ function grading_stats_uni_form(&$obj) {
 
   $form['updatebutton'] = array(
     '#type' => 'button',
-    '#value' => 'Show Grade Statistics for above selection',
+    '#value' => t('Show Grade Statistics for above selection'),
     '#ahah' => array(
       'path'    => 'grading/ahahstatsuni',
       'wrapper' => 'stats_here_uni',
@@ -1779,7 +1779,7 @@ function grading_stats_uni_form(&$obj) {
  * submit hook for {@link grading_stats_uni_form()}
  */
 function grading_stats_uni_form_submit($form, &$state) {
-  drupal_set_message('Submitted<br />');
+  drupal_set_message(t('Submitted') . '<br />');
 }
 
 
@@ -1824,35 +1824,35 @@ function _grading_ahah_stats_uni() {
   }
 
   if ($programme !== 'All') {
-    $title = 'PROGRAMME';
+    $title = t('PROGRAMME');
     $queryvalue = $programme;
     $querywhere = "AND p.field_programme_name_value='%s'";
   }
   elseif ($department !== 'All') {
-    $title = 'DEPARTMENTAL';
+    $title = t('DEPARTMENTAL');
     $queryvalue = $department;
     $querywhere = "AND d.field_department_name_value='%s'";
   }
   elseif ($college !== 'All') {
-    $title = 'FACULTY';
+    $title = t('FACULTY');
     $queryvalue = $college;
     $querywhere = "AND co.field_college_name_value='%s'";
   }
   else {
-    $title = 'UNIVERSITY';
+    $title = t('UNIVERSITY');
     $queryvalue = FALSE;
     $querywhere = '';
   }
 
   $output = '<br /><table class="body-table"><tbody>';
-  $output .= '<tr><th valign="top" class="table-label" colspan="5">' . $title . ' SUMMARY RESULTS</th></tr>';
+  $output .= '<tr><th valign="top" class="table-label" colspan="5">' . $title . ' ' . t('SUMMARY RESULTS') . '</th></tr>';
 
   $output .= '<tr>';
-  $output .= '<td valign="top" class="table-label">LEVEL</td>';
-  $output .= '<td valign="top" class="table-label">Total No. of Registered Students</td>';
-  $output .= '<td valign="top" class="table-label">No. of Students that Completed Exams</td>';
-  $output .= '<td valign="top" class="table-label">No. of Students that Partially Completed Exams</td>';
-  $output .= '<td valign="top" class="table-label">No. of Absent Students</td>';
+  $output .= '<td valign="top" class="table-label">' . t('LEVEL') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Total No. of Registered Students') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('No. of Students that Completed Exams') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('No. of Students that Partially Completed Exams') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('No. of Absent Students') . '</td>';
   $output .= '</tr>';
 
   $levels = _grading_level_list();
@@ -1930,7 +1930,7 @@ function _grading_ahah_stats_uni() {
       while ($programmerow = db_fetch_object($programmerows)) {
         if ($first) {
           $output .= '<tr><td colspan="5"><br /></td></tr>';
-          $output .= '<tr><td colspan="5">View Department Details (for level ' . $level . ')...</td></tr>';
+          $output .= '<tr><td colspan="5">' . t('View Department Details (for level !level)...', array('!level' => $level)) . '</td></tr>';
           $first = false;
         }
         $departmentenc = rawurlencode($programmerow->department);
@@ -1960,7 +1960,7 @@ function grading_student_details_form(&$obj) {
   $form['studentname'] = array(
     '#type' => 'select',
     '#options' => _grading_student_list(),
-    '#title' => 'Student Name',
+    '#title' => t('Student Name'),
     '#ahah' =>array(
       'event'   => 'change',
       'path'    => 'grading/ahahstudentdetails',
@@ -1973,7 +1973,7 @@ function grading_student_details_form(&$obj) {
   $form['studentmat'] = array(
     '#type' => 'select',
     '#options' => _grading_mat_list(),
-    '#title' => 'Student Matriculation Number',
+    '#title' => t('Student Matriculation Number'),
     '#ahah' =>array(
       'event'   => 'change',
       'path'    => 'grading/ahahstudentdetails',
@@ -1985,7 +1985,7 @@ function grading_student_details_form(&$obj) {
 
   $form['updatestudentbutton'] = array(
     '#type' => 'button',
-    '#value' => "Show all of the selected Student's Courses",
+    '#value' => t("Show all of the selected Student's Courses"),
     '#ahah' => array(
       'path'    => 'grading/ahahstudentdetails',
       'wrapper' => 'studentdata_here',
@@ -2065,7 +2065,7 @@ function _grading_ahah_studentdetails() {
   global $base_url;
 
   if (empty($_POST['studentname']) && empty($_POST['studentmat'])) {
-    print drupal_to_js(array('data' => 'You must select either a Student Name or Matriculation Number', 'status' => true));
+    print drupal_to_js(array('data' => t('You must select either a Student Name or Matriculation Number'), 'status' => true));
     exit();
   }
   elseif (!empty($_POST['studentname'])) $uid = (int)$_POST['studentname'];
@@ -2083,29 +2083,29 @@ function _grading_ahah_studentdetails() {
   if (!staff_has_eduerp_role($user->uid, 0, 0, array('University Examination Viewer', 'University Grade Editor', 'Registrar', 'Vice-Chancellor')) &&
     !staff_has_eduerp_role($user->uid, $r->nid, 0, array('Department Examination Officer', 'Department Grade Editor', 'Head of Department')) &&
     !staff_has_eduerp_role($user->uid, 0, $r->field_college_id_nid, array('Faculty Examination Officer', 'Faculty Grade Editor', 'Dean of Faculty'))) {
-    print drupal_to_js(array('data' => 'You do Not have Rights to see data for this Student', 'status' => true));
+    print drupal_to_js(array('data' => t('You do Not have Rights to see data for this Student'), 'status' => true));
     exit();
   }
 
   $output = '<br /><table class="body-table"><tbody>';
-  $output .= '<tr><th valign="top" class="table-label" colspan="14">Courses for this Student</th></tr>';
+  $output .= '<tr><th valign="top" class="table-label" colspan="14">' . t('Courses for this Student') . '</th></tr>';
 
   $output .= '<tr>';
-  $output .= '<td valign="top" class="table-label">Course</td>';
-  $output .= '<td valign="top" class="table-label">Programme</td>';
-  $output .= '<td valign="top" class="table-label">Department</td>';
-  $output .= '<td valign="top" class="table-label">Session</td>';
-  $output .= '<td valign="top" class="table-label">Semester</td>';
-  $output .= '<td valign="top" class="table-label">Level</td>';
-  $output .= '<td valign="top" class="table-label">CA1</td>';
-  $output .= '<td valign="top" class="table-label">CA2</td>';
-  $output .= '<td valign="top" class="table-label">CA3</td>';
-  $output .= '<td valign="top" class="table-label">CA4</td>';
-  $output .= '<td valign="top" class="table-label">Exam</td>';
-  $output .= '<td valign="top" class="table-label">Total</td>';
-  $output .= '<td valign="top" class="table-label">Grade</td>';
-  $output .= '<td valign="top" class="table-label">Dropped?</td>';
-  $output .= '<td valign="top" class="table-label">Comment</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Course') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Programme') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Department') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Session') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Semester') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Level') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('CA1') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('CA2') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('CA3') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('CA4') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Exam') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Total') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Grade') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Dropped?') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Comment') . '</td>';
   $output .= '</tr>';
 
   $sql = "SELECT
@@ -2162,7 +2162,7 @@ function _grading_ahah_studentdetails() {
     $output .= "<td>{$row->total}</td>";
     $output .= "<td>{$row->grade}</td>";
     $output .= '<td>';
-    if ($row->dropped) $output .=  'Dropped';
+    if ($row->dropped) $output .=  t('Dropped');
     $output .= '</td>';
     $output .= '<td>';
     if (!empty($row->comment)) $output .=  check_plain($row->comment);
@@ -2172,18 +2172,18 @@ function _grading_ahah_studentdetails() {
   $output .= '</tbody></table>';
 
   $output .= '<br /><table class="body-table"><tbody>';
-  $output .= '<tr><th valign="top" class="table-label" colspan="9">GPAs for this Student</th></tr>';
+  $output .= '<tr><th valign="top" class="table-label" colspan="9">' . t('GPAs for this Student') . '</th></tr>';
 
   $output .= '<tr>';
-  $output .= '<td valign="top" class="table-label">Programme</td>';
-  $output .= '<td valign="top" class="table-label">Department</td>';
-  $output .= '<td valign="top" class="table-label">Session</td>';
-  $output .= '<td valign="top" class="table-label">Semester</td>';
-  $output .= '<td valign="top" class="table-label">Level</td>';
-  $output .= '<td valign="top" class="table-label">Credit Load Registered</td>';
-  $output .= '<td valign="top" class="table-label">Credit Load Completed</td>';
-  $output .= '<td valign="top" class="table-label">GPA</td>';
-  $output .= '<td valign="top" class="table-label">cGPA</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Programme') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Department') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Session') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Semester') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Level') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Credit Load Registered') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('Credit Load Completed') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('GPA') . '</td>';
+  $output .= '<td valign="top" class="table-label">' . t('cGPA') . '</td>';
   $output .= '</tr>';
 
   $sql = "SELECT
@@ -2256,17 +2256,17 @@ function grading_cron() {
       $user_profile = new UserProfile($notification->student_uid);
       $gradestext = $notification->gradestext;
       $programme = $notification->programme;
-      $subject = "$gradestext for $programme Approved";
+      $subject = t('!gradestext for !programme Approved', array('!gradestext' => $gradestext, '!programme' => $programme));
 
       $body = '';
       if (!empty($user_profile->profile_first_name) && !empty($user_profile->profile_last_name)) {
         $middle = '';
         if (!empty($user_profile->profile_middle_name)) $middle = $user_profile->profile_middle_name . ' ';
-        $body .= "Dear $user_profile->profile_first_name {$middle}$user_profile->profile_last_name,\n\n";
+        $body .= t('Dear !name', array('!name' => "$user_profile->profile_first_name {$middle}$user_profile->profile_last_name")) . ",\n\n";
       }
-      $body .= "I have approved the $gradestext for $programme\n\n";
-      $body .= "To view your grades go to $base_url/student\n";
-      $body .= "You will have to login first.\n\n";
+      $body .= t('I have approved the !gradestext for !programme', array('!gradestext' => $gradestext, '!programme' => $programme)) . "\n\n";
+      $body .= t('To view your grades go to') . " $base_url/student\n";
+      $body .= t('You will have to login first.') . "\n\n";
       $body .= "{$name}\n";
 
       $message = drupal_mail('grading', 'notifystudent', $destination_user->mail, language_default(), array(), $source_user->mail, FALSE);

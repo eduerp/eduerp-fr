@@ -6,3 +6,5 @@ stagingbackup20110425.sql
 *.module~
 *.inc~
 *.info~
+potx.inc
+potx-cli.php
