@@ -1285,7 +1285,7 @@ function approve_grades_registrar_form_submit($form, &$form_state) {
     $body .= t('Faculty') . ": $college\n";
     $body .= t('Level') . ": $level\n";
     $body .= t('Session') . ": $session\n";
-    $body .= t('semester') . ": $semester\n\n";
+    $body .= t('Semester') . ": $semester\n\n";
     $body .= t("Registrar's comment") . "...\n";
     $body .= str_replace('<br />', "\n", $comment);
     $body .= "\n\n{$name}\n";

@@ -3,6 +3,7 @@
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
+#  course_grades_footer.inc: n/a
 #  grading.module: n/a
 #  grading.info: n/a
 #
@@ -10,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2012-05-31 14:52+0100\n"
+"POT-Creation-Date: 2012-06-01 16:56+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -19,20 +20,252 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: grading.module:600;1160;1284;1344;1733;2096;2179
+#: course_grades_footer.inc:67
+msgid "Maximum marks allowed..."
+msgstr ""
+
+#: course_grades_footer.inc:68
+msgid "CA"
+msgstr ""
+
+#: course_grades_footer.inc:69;180
+msgid "Exam Score"
+msgstr ""
+
+#: course_grades_footer.inc:85
+msgid "RESULTS SUMMARY"
+msgstr ""
+
+#: course_grades_footer.inc:95
+msgid "Number of !field_grade_value Grades"
+msgstr ""
+
+#: course_grades_footer.inc:102
+msgid "Number of Missing Grades"
+msgstr ""
+
+#: course_grades_footer.inc:107
+msgid "Total Number of Students"
+msgstr ""
+
+#: course_grades_footer.inc:138 grading.module:1060
+msgid "Continuous Assessment 1"
+msgstr ""
+
+#: course_grades_footer.inc:140;151;162;173;182
+msgid "Not Submitted by Lecturer"
+msgstr ""
+
+#: course_grades_footer.inc:141;152;163;174;183
+msgid "All Submitted to Department"
+msgstr ""
+
+#: course_grades_footer.inc:142;153;164;175
+msgid "All Approved by Department"
+msgstr ""
+
+#: course_grades_footer.inc:149 grading.module:1061
+msgid "Continuous Assessment 2"
+msgstr ""
+
+#: course_grades_footer.inc:160 grading.module:1062
+msgid "Continuous Assessment 3"
+msgstr ""
+
+#: course_grades_footer.inc:171 grading.module:1063
+msgid "Continuous Assessment 4"
+msgstr ""
+
+#: course_grades_footer.inc:184
+msgid "All Submitted to Faculty"
+msgstr ""
+
+#: course_grades_footer.inc:186
+msgid "All Submitted to Registrar"
+msgstr ""
+
+#: course_grades_footer.inc:187;189
+msgid "All Submitted to Vice Chancellor"
+msgstr ""
+
+#: course_grades_footer.inc:190
+msgid "All Approved by Vice Chancellor"
+msgstr ""
+
+#: course_grades_footer.inc:242
+msgid "THERE IS NO HEAD OF DEPARTMENT OR GRADE EDITOR ASSIGNED FOR THIS DEPARTMENT, ONE MUST BE ASSIGNED"
+msgstr ""
+
+#: course_grades_footer.inc:248;309;349;400
+msgid "First set of Continuous Assessment Grades"
+msgstr ""
+
+#: course_grades_footer.inc:253;304;356;406
+msgid "Second set of Continuous Assessment Grades"
+msgstr ""
+
+#: course_grades_footer.inc:258;299;363;412
+msgid "Third set of Continuous Assessment Grades"
+msgstr ""
+
+#: course_grades_footer.inc:263;294;370;418
+msgid "Fourth set of Continuous Assessment Grades"
+msgstr ""
+
+#: course_grades_footer.inc:268;289;377;424
+msgid "Final Exam Grades"
+msgstr ""
+
+#: course_grades_footer.inc:277;388;434
+msgid "YOU MUST CHOOSE A SPECIFIC LOCATION ABOVE IF YOU WANT TO APPROVE GRADES. CHOICES ARE..."
+msgstr ""
+
+#: course_grades_footer.inc:318
+msgid "YOU MUST CHOOSE A SPECIFIC LOCATION ABOVE IF YOU WANT TO UNLOCK GRADES. CHOICES ARE..."
+msgstr ""
+
+#: course_grades_footer.inc:343
+msgid "THERE IS NO DEAN OR GRADE EDITOR ASSIGNED FOR THIS FACULTY, ONE MUST BE ASSIGNED"
+msgstr ""
+
+#: course_grades_footer.inc:454
+msgid "Enter a comment on the grades for the HOD."
+msgstr ""
+
+#: course_grades_footer.inc:473
+msgid "Approve !gradestext."
+msgstr ""
+
+#: course_grades_footer.inc:484
+msgid "You must enter a comment for the Head of Department!"
+msgstr ""
+
+#: course_grades_footer.inc:777
+msgid "!gradestext for !coursecode Approved by !name"
+msgstr ""
+
+#: course_grades_footer.inc:783;970;1031;1230;1304 grading.module:1279;2265
+msgid "Dear !name"
+msgstr ""
+
+#: course_grades_footer.inc:786
+msgid "I have approved !gradestext for !coursecode"
+msgstr ""
+
+#: course_grades_footer.inc:787;974;1035;1234 grading.module:1283
+msgid "URL"
+msgstr ""
+
+#: course_grades_footer.inc:788;975;1036;1235 grading.module:600;1160;1284;1344;1733;2096;2179
 msgid "Department"
 msgstr ""
 
-#: grading.module:615;1287;1678;2097;2180
+#: course_grades_footer.inc:789;976;1037;1236 grading.module:1285;1720
+msgid "Faculty"
+msgstr ""
+
+#: course_grades_footer.inc:790;977;1038;1237 grading.module:645;1286;1707;2099;2182
+msgid "Level"
+msgstr ""
+
+#: course_grades_footer.inc:791;978;1039;1238 grading.module:615;1287;1678;2097;2180
 msgid "Session"
 msgstr ""
 
-#: grading.module:630;1693;2098;2181
+#: course_grades_footer.inc:792;979;1040;1239 grading.module:630;1288;1693;2098;2181
 msgid "Semester"
 msgstr ""
 
-#: grading.module:645;1286;1707;2099;2182
-msgid "Level"
+#: course_grades_footer.inc:793;980;1041;1240;1522
+msgid "Location"
+msgstr ""
+
+#: course_grades_footer.inc:794
+msgid "Lecturer's comment"
+msgstr ""
+
+#: course_grades_footer.inc:834;1321;1470
+msgid "Approval successfull"
+msgstr ""
+
+#: course_grades_footer.inc:850
+msgid "Enter a comment on the grades for the Lecturer."
+msgstr ""
+
+#: course_grades_footer.inc:869
+msgid "Unlock the !gradestexthod for the lecturer to re-edit."
+msgstr ""
+
+#: course_grades_footer.inc:880
+msgid "You must enter a comment for the Lecturer!"
+msgstr ""
+
+#: course_grades_footer.inc:964;1025
+msgid "!gradestexthod for !coursecode Unlocked by !name"
+msgstr ""
+
+#: course_grades_footer.inc:973;1034
+msgid "I have unlocked !gradestexthod for !coursecode"
+msgstr ""
+
+#: course_grades_footer.inc:981;1042
+msgid "Head of Department's comment"
+msgstr ""
+
+#: course_grades_footer.inc:1053
+msgid "Unlocking successfull"
+msgstr ""
+
+#: course_grades_footer.inc:1069
+msgid "Enter a comment on the grades for the Dean."
+msgstr ""
+
+#: course_grades_footer.inc:1089
+msgid "Approve !gradestexthoda."
+msgstr ""
+
+#: course_grades_footer.inc:1100
+msgid "You must enter a comment for the Dean!"
+msgstr ""
+
+#: course_grades_footer.inc:1224;1298
+msgid "!gradestexthoda for !coursecode Approved by !name"
+msgstr ""
+
+#: course_grades_footer.inc:1233;1306
+msgid "I have approved !gradestexthoda for !coursecode"
+msgstr ""
+
+#: course_grades_footer.inc:1241
+msgid "HOD's comment"
+msgstr ""
+
+#: course_grades_footer.inc:1307 grading.module:2268
+msgid "To view your grades go to"
+msgstr ""
+
+#: course_grades_footer.inc:1308 grading.module:2269
+msgid "You will have to login first."
+msgstr ""
+
+#: course_grades_footer.inc:1337
+msgid "Enter a comment on the grades for the Record."
+msgstr ""
+
+#: course_grades_footer.inc:1355
+msgid "Approve !gradestextdean."
+msgstr ""
+
+#: course_grades_footer.inc:1366 grading.module:1374
+msgid "You must enter a comment for the Record!"
+msgstr ""
+
+#: course_grades_footer.inc:1445
+msgid "!gradestextdean for !coursecode Approved by !name"
+msgstr ""
+
+#: course_grades_footer.inc:1522
+msgid "Lecturer"
 msgstr ""
 
 #: grading.module:658
@@ -115,22 +348,6 @@ msgstr ""
 msgid "Student's Programme"
 msgstr ""
 
-#: grading.module:1060
-msgid "Continuous Assessment 1"
-msgstr ""
-
-#: grading.module:1061
-msgid "Continuous Assessment 2"
-msgstr ""
-
-#: grading.module:1062
-msgid "Continuous Assessment 3"
-msgstr ""
-
-#: grading.module:1063
-msgid "Continuous Assessment 4"
-msgstr ""
-
 #: grading.module:1114
 msgid "Lecturers need to Submit"
 msgstr ""
@@ -171,24 +388,8 @@ msgstr ""
 msgid "!gradestext for !departmentlevelsessionsemester Approved by !name"
 msgstr ""
 
-#: grading.module:1279;2265
-msgid "Dear !name"
-msgstr ""
-
 #: grading.module:1282
 msgid "I have approved !gradestext"
-msgstr ""
-
-#: grading.module:1283
-msgid "URL"
-msgstr ""
-
-#: grading.module:1285;1720
-msgid "Faculty"
-msgstr ""
-
-#: grading.module:1288
-msgid "semester"
 msgstr ""
 
 #: grading.module:1289
@@ -197,10 +398,6 @@ msgstr ""
 
 #: grading.module:1348
 msgid "Enter a comment on the grades for the Record"
-msgstr ""
-
-#: grading.module:1374
-msgid "You must enter a comment for the Record!"
 msgstr ""
 
 #: grading.module:1746;2095;2178
@@ -341,14 +538,6 @@ msgstr ""
 
 #: grading.module:2267
 msgid "I have approved the !gradestext for !programme"
-msgstr ""
-
-#: grading.module:2268
-msgid "To view your grades go to"
-msgstr ""
-
-#: grading.module:2269
-msgid "You will have to login first."
 msgstr ""
 
 #: grading.module:10

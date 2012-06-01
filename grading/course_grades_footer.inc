@@ -64,9 +64,9 @@ if (!empty($_SESSION['views']['course_grades']['default']['coursecode']) &&
     $row->max_mark_exam = 100;
   }
 
-  echo 'Maximum marks allowed...';
-  for ($i=1; $i<=$number_of_ca; $i++) echo " CA{$i}: " . $row->{'max_mark_ca' . $i} . ',';
-  echo " Exam Score: {$row->max_mark_exam}<br /><br />";
+  echo t('Maximum marks allowed...');
+  for ($i=1; $i<=$number_of_ca; $i++) echo ' ' . t('CA') . "{$i}: " . $row->{'max_mark_ca' . $i} . ',';
+  echo ' ' . t('Exam Score') . ": {$row->max_mark_exam}<br /><br />";
 
   // Number of grades of each level (A-F)
   $sql = "SELECT field_grade_value, COUNT(*) AS count FROM {content_type_student_grades} sg, {content_type_course_instance} ci, {content_type_course} c
@@ -82,7 +82,7 @@ if (!empty($_SESSION['views']['course_grades']['default']['coursecode']) &&
   $countgrades = db_query($sql, $coursecode, $session);
 
   echo '<table class="body-table"><tbody>';
-  echo '<tr><th valign="top" class="table-label" colspan="2">RESULTS SUMMARY</th></tr>';
+  echo '<tr><th valign="top" class="table-label" colspan="2">' . t('RESULTS SUMMARY') . '</th></tr>';
 
   $total = 0;
   $missing = 0;
@@ -92,19 +92,19 @@ if (!empty($_SESSION['views']['course_grades']['default']['coursecode']) &&
     }
     else {
       echo '<tr>';
-      echo '<td valign="top" class="table-label">Number of ' . $row->field_grade_value . ' Grades </td>';
+      echo '<td valign="top" class="table-label">' . t('Number of !field_grade_value Grades', array('!field_grade_value Grades' => $row->field_grade_value)) . '</td>';
       echo '<td valign="top">' . $row->count . '</td>';
       echo '</tr>';
     }
     $total += $row->count;
   }
   echo '<tr>';
-  echo '<td valign="top" class="table-label">Number of Missing Grades</td>';
+  echo '<td valign="top" class="table-label">' . t('Number of Missing Grades') . '</td>';
   echo '<td valign="top">' . $missing . '</td>';
   echo '</tr>';
 
   echo '<tr>';
-  echo '<td valign="top" class="table-label">Total Number of Students</td>';
+  echo '<td valign="top" class="table-label">' . t('Total Number of Students') . '</td>';
   echo '<td valign="top">' . $total . '</td>';
   echo '</tr>';
 
@@ -135,59 +135,59 @@ if (!empty($_SESSION['views']['course_grades']['default']['coursecode']) &&
 
   if ($ca_approved_onebyone && $number_of_ca >= 1) {
     echo '<tr>';
-    echo '<td valign="top" class="table-label">Continuous Assessment 1</td>';
+    echo '<td valign="top" class="table-label">' . t('Continuous Assessment 1') . '</td>';
     echo '<td valign="top">';
-    if     ($locks->alllocked1 == 0) echo 'Not Submitted by Lecturer';
-    elseif ($locks->alllocked1 == 1) echo 'All Submitted to Department';
-    elseif ($locks->alllocked1 >= 2) echo 'All Approved by Department';
+    if     ($locks->alllocked1 == 0) echo t('Not Submitted by Lecturer');
+    elseif ($locks->alllocked1 == 1) echo t('All Submitted to Department');
+    elseif ($locks->alllocked1 >= 2) echo t('All Approved by Department');
     echo '</td>';
     echo '</tr>';
   }
 
   if ($ca_approved_onebyone && $number_of_ca >= 2) {
     echo '<tr>';
-    echo '<td valign="top" class="table-label">Continuous Assessment 2</td>';
+    echo '<td valign="top" class="table-label">' . t('Continuous Assessment 2') . '</td>';
     echo '<td valign="top">';
-    if     ($locks->alllocked2 == 0) echo 'Not Submitted by Lecturer';
-    elseif ($locks->alllocked2 == 1) echo 'All Submitted to Department';
-    elseif ($locks->alllocked2 >= 2) echo 'All Approved by Department';
+    if     ($locks->alllocked2 == 0) echo t('Not Submitted by Lecturer');
+    elseif ($locks->alllocked2 == 1) echo t('All Submitted to Department');
+    elseif ($locks->alllocked2 >= 2) echo t('All Approved by Department');
     echo '</td>';
     echo '</tr>';
   }
 
   if ($ca_approved_onebyone && $number_of_ca >= 3) {
     echo '<tr>';
-    echo '<td valign="top" class="table-label">Continuous Assessment 3</td>';
+    echo '<td valign="top" class="table-label">' . t('Continuous Assessment 3') . '</td>';
     echo '<td valign="top">';
-    if     ($locks->alllocked3 == 0) echo 'Not Submitted by Lecturer';
-    elseif ($locks->alllocked3 == 1) echo 'All Submitted to Department';
-    elseif ($locks->alllocked3 >= 2) echo 'All Approved by Department';
+    if     ($locks->alllocked3 == 0) echo t('Not Submitted by Lecturer');
+    elseif ($locks->alllocked3 == 1) echo t('All Submitted to Department');
+    elseif ($locks->alllocked3 >= 2) echo t('All Approved by Department');
     echo '</td>';
     echo '</tr>';
   }
 
   if ($ca_approved_onebyone && $number_of_ca >= 4) {
     echo '<tr>';
-    echo '<td valign="top" class="table-label">Continuous Assessment 4</td>';
+    echo '<td valign="top" class="table-label">' . t('Continuous Assessment 4') . '</td>';
     echo '<td valign="top">';
-    if     ($locks->alllocked4 == 0) echo 'Not Submitted by Lecturer';
-    elseif ($locks->alllocked4 == 1) echo 'All Submitted to Department';
-    elseif ($locks->alllocked4 >= 2) echo 'All Approved by Department';
+    if     ($locks->alllocked4 == 0) echo t('Not Submitted by Lecturer');
+    elseif ($locks->alllocked4 == 1) echo t('All Submitted to Department');
+    elseif ($locks->alllocked4 >= 2) echo t('All Approved by Department');
     echo '</td>';
     echo '</tr>';
   }
   echo '<tr>';
-  echo '<td valign="top" class="table-label">Exam Score</td>';
+  echo '<td valign="top" class="table-label">' . t('Exam Score') . '</td>';
   echo '<td valign="top">';
-  if     ($locks->alllockede == 0) echo 'Not Submitted by Lecturer';
-  elseif ($locks->alllockede == 1) echo 'All Submitted to Department';
-  elseif ($locks->alllockede == 2) echo 'All Submitted to Faculty';
+  if     ($locks->alllockede == 0) echo t('Not Submitted by Lecturer');
+  elseif ($locks->alllockede == 1) echo t('All Submitted to Department');
+  elseif ($locks->alllockede == 2) echo t('All Submitted to Faculty');
   elseif ($locks->alllockede == 3) {
-    if (variable_get('RegistrarApprovesGrades', 0)) echo 'All Submitted to Registrar';
-    else echo 'All Submitted to Vice Chancellor';
+    if (variable_get('RegistrarApprovesGrades', 0)) echo t('All Submitted to Registrar');
+    else echo t('All Submitted to Vice Chancellor');
   }
-  elseif ($locks->alllockede == 4) echo 'All Submitted to Vice Chancellor';
-  elseif ($locks->alllockede == 5) echo 'All Approved by Vice Chancellor';
+  elseif ($locks->alllockede == 4) echo t('All Submitted to Vice Chancellor');
+  elseif ($locks->alllockede == 5) echo t('All Approved by Vice Chancellor');
   echo '</td>';
   echo '</tr>';
 
@@ -239,33 +239,33 @@ if (!empty($_SESSION['views']['course_grades']['default']['coursecode']) &&
 
   // Do we want to show the Approval form for the Lecturer
   if (empty($hod_uid)) {
-    echo 'THERE IS NO HEAD OF DEPARTMENT OR GRADE EDITOR ASSIGNED FOR THIS DEPARTMENT, ONE MUST BE ASSIGNED<br />';
+    echo t('THERE IS NO HEAD OF DEPARTMENT OR GRADE EDITOR ASSIGNED FOR THIS DEPARTMENT, ONE MUST BE ASSIGNED') . '<br />';
   }
   elseif ($user->uid == $staff->lecturer_uid || $user->uid == $staff->lecturer_alternate_uid || in_array($user->uid, $lecturerequiv_uid_array)) {
     $showform = FALSE;
     if     ($ca_approved_onebyone && $number_of_ca >= 1 && $locks->alllocked1 == 0) {
       $eduerpapprovalform->fieldtoapprove = 'field_ca1locked_value';
-      $eduerpapprovalform->gradestext = 'First set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestext = t('First set of Continuous Assessment Grades');
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 2 && $locks->alllocked2 == 0) {
       $eduerpapprovalform->fieldtoapprove = 'field_ca2locked_value';
-      $eduerpapprovalform->gradestext = 'Second set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestext = t('Second set of Continuous Assessment Grades');
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 3 && $locks->alllocked3 == 0) {
       $eduerpapprovalform->fieldtoapprove = 'field_ca3locked_value';
-      $eduerpapprovalform->gradestext = 'Third set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestext = t('Third set of Continuous Assessment Grades');
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 4 && $locks->alllocked4 == 0) {
       $eduerpapprovalform->fieldtoapprove = 'field_ca4locked_value';
-      $eduerpapprovalform->gradestext = 'Fourth set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestext = t('Fourth set of Continuous Assessment Grades');
       $showform = TRUE;
     }
     elseif ($locks->alllockede == 0) {
       $eduerpapprovalform->fieldtoapprove = 'field_examscorelocked_value';
-      $eduerpapprovalform->gradestext = 'Final Exam Grades';
+      $eduerpapprovalform->gradestext = t('Final Exam Grades');
       $showform = TRUE;
     }
 
@@ -274,7 +274,7 @@ if (!empty($_SESSION['views']['course_grades']['default']['coursecode']) &&
         echo drupal_get_form('approve_grades_lecturer_form');
       }
       else {
-        echo "YOU MUST CHOOSE A SPECIFIC LOCATION ABOVE IF YOU WANT TO APPROVE GRADES. CHOICES ARE...<br />";
+        echo t('YOU MUST CHOOSE A SPECIFIC LOCATION ABOVE IF YOU WANT TO APPROVE GRADES. CHOICES ARE...') . '<br />';
         listlocations($coursecode, $session, $semesterwhere, $locationwhere);
       }
     }
@@ -286,27 +286,27 @@ if (!empty($_SESSION['views']['course_grades']['default']['coursecode']) &&
     $showform = FALSE;
     if ($locks->anylockede && $locks->alllockede < 5) {
       $eduerpapprovalform->fieldtoapprovehod = 'field_examscorelocked_value';
-      $eduerpapprovalform->gradestexthod = 'Final Exam Grades';
+      $eduerpapprovalform->gradestexthod = t('Final Exam Grades');
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 4 && $locks->anylocked4 && $locks->alllockede < 5) { // If any CA4 locked and VC has not approved the Final Exam
       $eduerpapprovalform->fieldtoapprovehod = 'field_ca4locked_value';
-      $eduerpapprovalform->gradestexthod = 'Fourth set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestexthod = t('Fourth set of Continuous Assessment Grades');
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 3 && $locks->anylocked3 && $locks->alllockede < 5) {
       $eduerpapprovalform->fieldtoapprovehod = 'field_ca3locked_value';
-      $eduerpapprovalform->gradestexthod = 'Third set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestexthod = t('Third set of Continuous Assessment Grades');
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 2 && $locks->anylocked2 && $locks->alllockede < 5) {
       $eduerpapprovalform->fieldtoapprovehod = 'field_ca2locked_value';
-      $eduerpapprovalform->gradestexthod = 'Second set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestexthod = t('Second set of Continuous Assessment Grades');
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 1 && $locks->anylocked1 && $locks->alllockede < 5) {
       $eduerpapprovalform->fieldtoapprovehod = 'field_ca1locked_value';
-      $eduerpapprovalform->gradestexthod = 'First set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestexthod = t('First set of Continuous Assessment Grades');
       $showform = TRUE;
     }
 
@@ -315,7 +315,7 @@ if (!empty($_SESSION['views']['course_grades']['default']['coursecode']) &&
         echo drupal_get_form('unlock_grades_hod_form');
       }
       else {
-        echo "YOU MUST CHOOSE A SPECIFIC LOCATION ABOVE IF YOU WANT TO UNLOCK GRADES. CHOICES ARE...<br />";
+        echo t('YOU MUST CHOOSE A SPECIFIC LOCATION ABOVE IF YOU WANT TO UNLOCK GRADES. CHOICES ARE...') . '<br />';
         listlocations($coursecode, $session, $semesterwhere, $locationwhere);
       }
     }
@@ -340,41 +340,41 @@ if (!empty($_SESSION['views']['course_grades']['default']['coursecode']) &&
 
   // Do we want to show the Approval form for the HOD
   if (empty($dean_uid)) {
-    echo 'THERE IS NO DEAN OR GRADE EDITOR ASSIGNED FOR THIS FACULTY, ONE MUST BE ASSIGNED<br />';
+    echo t('THERE IS NO DEAN OR GRADE EDITOR ASSIGNED FOR THIS FACULTY, ONE MUST BE ASSIGNED') . '<br />';
   }
   elseif (in_array($user->uid, $hod_uid_array)) {
     $showform = FALSE;
     if     ($ca_approved_onebyone && $number_of_ca >= 1 && $locks->alllocked1 == 1) {
       $eduerpapprovalform->fieldtoapprovehoda = 'field_ca1locked_value';
-      $eduerpapprovalform->gradestexthoda = 'First set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestexthoda = t('First set of Continuous Assessment Grades');
       $eduerpapprovalform->srcfield = 'field_ca1_value';
       $eduerpapprovalform->destfield = 'field_ca1forstudent_value';
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 2 && $locks->alllocked2 == 1) {
       $eduerpapprovalform->fieldtoapprovehoda = 'field_ca2locked_value';
-      $eduerpapprovalform->gradestexthoda = 'Second set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestexthoda = t('Second set of Continuous Assessment Grades');
       $eduerpapprovalform->srcfield = 'field_ca2_value';
       $eduerpapprovalform->destfield = 'field_ca2forstudent_value';
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 3 && $locks->alllocked3 == 1) {
       $eduerpapprovalform->fieldtoapprovehoda = 'field_ca3locked_value';
-      $eduerpapprovalform->gradestexthoda = 'Third set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestexthoda = t('Third set of Continuous Assessment Grades');
       $eduerpapprovalform->srcfield = 'field_ca3_value';
       $eduerpapprovalform->destfield = 'field_ca3forstudent_value';
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 4 && $locks->alllocked4 == 1) {
       $eduerpapprovalform->fieldtoapprovehoda = 'field_ca4locked_value';
-      $eduerpapprovalform->gradestexthoda = 'Fourth set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestexthoda = t('Fourth set of Continuous Assessment Grades');
       $eduerpapprovalform->srcfield = 'field_ca4_value';
       $eduerpapprovalform->destfield = 'field_ca4forstudent_value';
       $showform = TRUE;
     }
     elseif ($locks->alllockede == 1) {
       $eduerpapprovalform->fieldtoapprovehoda = 'field_examscorelocked_value';
-      $eduerpapprovalform->gradestexthoda = 'Final Exam Grades';
+      $eduerpapprovalform->gradestexthoda = t('Final Exam Grades');
       $eduerpapprovalform->srcfield = 'NONE';
       $eduerpapprovalform->destfield = 'NONE';
       $showform = TRUE;
@@ -385,7 +385,7 @@ if (!empty($_SESSION['views']['course_grades']['default']['coursecode']) &&
         echo drupal_get_form('approve_grades_hod_form');
       }
       else {
-        echo "YOU MUST CHOOSE A SPECIFIC LOCATION ABOVE IF YOU WANT TO APPROVE GRADES. CHOICES ARE...<br />";
+        echo t('YOU MUST CHOOSE A SPECIFIC LOCATION ABOVE IF YOU WANT TO APPROVE GRADES. CHOICES ARE...') . '<br />';
         listlocations($coursecode, $session, $semesterwhere, $locationwhere);
       }
     }
@@ -397,31 +397,31 @@ if (!empty($_SESSION['views']['course_grades']['default']['coursecode']) &&
     $showform = FALSE;
     if     ($ca_approved_onebyone && $number_of_ca >= 1 && $locks->alllocked1 == 2) {
       $eduerpapprovalform->fieldtoapprovedean = 'field_ca1locked_value';
-      $eduerpapprovalform->gradestextdean = 'First set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestextdean = t('First set of Continuous Assessment Grades');
       $eduerpapprovalform->srcfield = 'field_ca1_value';
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 2 && $locks->alllocked2 == 2) {
       $eduerpapprovalform->fieldtoapprovedean = 'field_ca2locked_value';
-      $eduerpapprovalform->gradestextdean = 'Second set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestextdean = t('Second set of Continuous Assessment Grades');
       $eduerpapprovalform->srcfield = 'field_ca2_value';
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 3 && $locks->alllocked3 == 2) {
       $eduerpapprovalform->fieldtoapprovedean = 'field_ca3locked_value';
-      $eduerpapprovalform->gradestextdean = 'Third set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestextdean = t('Third set of Continuous Assessment Grades');
       $eduerpapprovalform->srcfield = 'field_ca3_value';
       $showform = TRUE;
     }
     elseif ($ca_approved_onebyone && $number_of_ca >= 4 && $locks->alllocked4 == 2) {
       $eduerpapprovalform->fieldtoapprovedean = 'field_ca4locked_value';
-      $eduerpapprovalform->gradestextdean = 'Fourth set of Continuous Assessment Grades';
+      $eduerpapprovalform->gradestextdean = t('Fourth set of Continuous Assessment Grades');
       $eduerpapprovalform->srcfield = 'field_ca4_value';
       $showform = TRUE;
     }
     elseif ($locks->alllockede == 2) {
       $eduerpapprovalform->fieldtoapprovedean = 'field_examscorelocked_value';
-      $eduerpapprovalform->gradestextdean = 'Final Exam Grades';
+      $eduerpapprovalform->gradestextdean = t('Final Exam Grades');
       $eduerpapprovalform->srcfield = 'NONE';
       $showform = TRUE;
     }
@@ -431,7 +431,7 @@ if (!empty($_SESSION['views']['course_grades']['default']['coursecode']) &&
         echo drupal_get_form('approve_grades_dean_form');
       }
       else {
-        echo "YOU MUST CHOOSE A SPECIFIC LOCATION ABOVE IF YOU WANT TO APPROVE GRADES. CHOICES ARE...<br />";
+        echo t('YOU MUST CHOOSE A SPECIFIC LOCATION ABOVE IF YOU WANT TO APPROVE GRADES. CHOICES ARE...') . '<br />';
         listlocations($coursecode, $session, $semesterwhere, $locationwhere);
       }
     }
@@ -451,7 +451,7 @@ function approve_grades_lecturer_form($form_state) {
 
   $form['comment'] = array(
     '#type' => 'textarea',
-    '#title' => 'Enter a comment on the grades for the HOD.',
+    '#title' => t('Enter a comment on the grades for the HOD.'),
     '#cols' => 80,
     '#rows' => 5,
     '#required' => TRUE
@@ -470,7 +470,7 @@ function approve_grades_lecturer_form($form_state) {
   $form['fieldtoapprove'] = array('#type' => 'value', '#value' => $eduerpapprovalform->fieldtoapprove);
   $form['gradestext']     = array('#type' => 'value', '#value' => $eduerpapprovalform->gradestext);
 
-  $form['submit'] = array('#type' => 'submit', '#value' => 'Approve ' . $eduerpapprovalform->gradestext . '.');
+  $form['submit'] = array('#type' => 'submit', '#value' => t('Approve !gradestext.', array('!gradestext' => $eduerpapprovalform->gradestext)));
 
   return $form;
 }
@@ -481,7 +481,7 @@ function approve_grades_lecturer_form($form_state) {
  */
 function approve_grades_lecturer_form_validate($form, &$form_state) {
   if (empty($form_state['values']['comment'])) {
-    form_set_error('comment', 'You must enter a comment for the Head of Department!');
+    form_set_error('comment', t('You must enter a comment for the Head of Department!'));
   }
 }
 
@@ -774,24 +774,24 @@ function approve_grades_lecturer_form_submit($form, &$form_state) {
       $user_profile = NULL;
     }
 
-    $subject = "$gradestext for $coursecode Approved by $name";
+    $subject = t('!gradestext for !coursecode Approved by !name', array('!gradestext' => $gradestext, '!coursecode' => $coursecode, '!name' => $name));
 
     $body = '';
     if (!empty($user_profile->profile_first_name) && !empty($user_profile->profile_last_name)) {
       $middle = '';
       if (!empty($user_profile->profile_middle_name)) $middle = $user_profile->profile_middle_name . ' ';
-      $body .= "Dear $user_profile->profile_first_name {$middle}$user_profile->profile_last_name,\n\n";
+      $body .= t('Dear !name', array('!name' => "$user_profile->profile_first_name {$middle}$user_profile->profile_last_name")) . ",\n\n";
     }
 
-    $body .= "I have approved $gradestext for $coursecode\n\n";
-    $body .= "URL: $course_url\n";
-    $body .= "Department: $department\n";
-    $body .= "Faculty: $college\n";
-    $body .= "Level: $level\n";
-    $body .= "Session: $session\n";
-    $body .= "Semester: $sem\n";
-    $body .= "Location: $loc\n\n";
-    $body .= "Lecturer's comment...\n";
+    $body .= t('I have approved !gradestext for !coursecode', array('!gradestext' => $gradestext, '!coursecode' => $coursecode)) . "\n\n";
+    $body .= t('URL') . ": $course_url\n";
+    $body .= t('Department') . ": $department\n";
+    $body .= t('Faculty') . ": $college\n";
+    $body .= t('Level') . ": $level\n";
+    $body .= t('Session') . ": $session\n";
+    $body .= t('Semester') . ": $sem\n";
+    $body .= t('Location') . ": $loc\n\n";
+    $body .= t("Lecturer's comment") . "...\n";
     $body .= str_replace('<br />', "\n", $comment);
     $body .= "\n\n{$name}\n\n";
 
@@ -831,7 +831,7 @@ function approve_grades_lecturer_form_submit($form, &$form_state) {
     }
   }
 
-  drupal_set_message('Approval successfull');
+  drupal_set_message(t('Approval successfull'));
 }
 
 
@@ -847,7 +847,7 @@ function unlock_grades_hod_form($form_state) {
 
   $form['comment'] = array(
     '#type' => 'textarea',
-    '#title' => 'Enter a comment on the grades for the Lecturer.',
+    '#title' => t('Enter a comment on the grades for the Lecturer.'),
     '#cols' => 80,
     '#rows' => 5,
     '#required' => TRUE
@@ -866,7 +866,7 @@ function unlock_grades_hod_form($form_state) {
   $form['fieldtoapprovehod'] = array('#type' => 'value', '#value' => $eduerpapprovalform->fieldtoapprovehod);
   $form['gradestexthod'] = array('#type' => 'value', '#value' => $eduerpapprovalform->gradestexthod);
 
-  $form['submit'] = array('#type' => 'submit', '#value' => 'Unlock the ' . $eduerpapprovalform->gradestexthod . ' for the lecturer to re-edit.');
+  $form['submit'] = array('#type' => 'submit', '#value' => t('Unlock the !gradestexthod for the lecturer to re-edit.', array('!gradestexthod' => $eduerpapprovalform->gradestexthod)));
 
   return $form;
 }
@@ -877,7 +877,7 @@ function unlock_grades_hod_form($form_state) {
  */
 function unlock_grades_hod_form_validate($form, &$form_state) {
   if (empty($form_state['values']['comment'])) {
-    form_set_error('comment', 'You must enter a comment for the Lecturer!');
+    form_set_error('comment', t('You must enter a comment for the Lecturer!'));
   }
 }
 
@@ -961,24 +961,24 @@ function unlock_grades_hod_form_submit($form, &$form_state) {
     $user_profile = NULL;
   }
 
-  $subject = "$gradestexthod for $coursecode Unlocked by $name";
+  $subject = t('!gradestexthod for !coursecode Unlocked by !name', array('!gradestexthod' => $gradestexthod, '!coursecode' => $coursecode, '!name' => $name));
 
   $body = '';
   if (!empty($user_profile->profile_first_name) && !empty($user_profile->profile_last_name)) {
     $middle = '';
     if (!empty($user_profile->profile_middle_name)) $middle = $user_profile->profile_middle_name . ' ';
-    $body .= "Dear $user_profile->profile_first_name {$middle}$user_profile->profile_last_name,\n\n";
+    $body .= t('Dear !name', array('!name' => "$user_profile->profile_first_name {$middle}$user_profile->profile_last_name")) . ",\n\n";
   }
 
-  $body .= "I have unlocked $gradestexthod for $coursecode\n\n";
-  $body .= "URL: $course_url\n";
-  $body .= "Department: $department\n";
-  $body .= "Faculty: $college\n";
-  $body .= "Level: $level\n";
-  $body .= "Session: $session\n";
-  $body .= "Semester: $sem\n";
-  $body .= "Location: $loc\n\n";
-  $body .= "Head of Department's comment...\n";
+  $body .= t('I have unlocked !gradestexthod for !coursecode', array('!gradestexthod' => $gradestexthod, '!coursecode' => $coursecode)) . "\n\n";
+  $body .= t('URL') . ": $course_url\n";
+  $body .= t('Department') . ": $department\n";
+  $body .= t('Faculty') . ": $college\n";
+  $body .= t('Level') . ": $level\n";
+  $body .= t('Session') . ": $session\n";
+  $body .= t('Semester') . ": $sem\n";
+  $body .= t('Location') . ": $loc\n\n";
+  $body .= t("Head of Department's comment") . "...\n";
   $body .= str_replace('<br />', "\n", $comment);
   $body .= "\n\n{$name}\n";
 
@@ -1022,24 +1022,24 @@ function unlock_grades_hod_form_submit($form, &$form_state) {
     $user_profile = NULL;
   }
 
-  $subject = "$gradestexthod for $coursecode Unlocked by $name";
+  $subject = t('!gradestexthod for !coursecode Unlocked by !name', array('!gradestexthod' => $gradestexthod, '!coursecode' => $coursecode, '!name' => $name));
 
   $body = '';
   if (!empty($user_profile->profile_first_name) && !empty($user_profile->profile_last_name)) {
     $middle = '';
     if (!empty($user_profile->profile_middle_name)) $middle = $user_profile->profile_middle_name . ' ';
-    $body .= "Dear $user_profile->profile_first_name {$middle}$user_profile->profile_last_name,\n\n";
+    $body .= t('Dear !name', array('!name' => "$user_profile->profile_first_name {$middle}$user_profile->profile_last_name")) . ",\n\n";
   }
 
-  $body .= "I have unlocked $gradestexthod for $coursecode\n\n";
-  $body .= "URL: $course_url\n";
-  $body .= "Department: $department\n";
-  $body .= "Faculty: $college\n";
-  $body .= "Level: $level\n";
-  $body .= "Session: $session\n";
-  $body .= "Semester: $sem\n";
-  $body .= "Location: $loc\n\n";
-  $body .= "Head of Department's comment...\n";
+  $body .= t('I have unlocked !gradestexthod for !coursecode', array('!gradestexthod' => $gradestexthod, '!coursecode' => $coursecode)) . "\n\n";
+  $body .= t('URL') . ": $course_url\n";
+  $body .= t('Department') . ": $department\n";
+  $body .= t('Faculty') . ": $college\n";
+  $body .= t('Level') . ": $level\n";
+  $body .= t('Session') . ": $session\n";
+  $body .= t('Semester') . ": $sem\n";
+  $body .= t('Location') . ": $loc\n\n";
+  $body .= t("Head of Department's comment") . "...\n";
   $body .= str_replace('<br />', "\n", $comment);
   $body .= "\n\n{$name}\n";
 
@@ -1050,7 +1050,7 @@ function unlock_grades_hod_form_submit($form, &$form_state) {
     drupal_mail_send($message);
   }
 
-  drupal_set_message('Unlocking successfull');
+  drupal_set_message(t('Unlocking successfull'));
 }
 
 
@@ -1066,7 +1066,7 @@ function approve_grades_hod_form($form_state) {
 
   $form['comment'] = array(
     '#type' => 'textarea',
-    '#title' => 'Enter a comment on the grades for the Dean.',
+    '#title' => t('Enter a comment on the grades for the Dean.'),
     '#cols' => 80,
     '#rows' => 5,
     '#required' => TRUE
@@ -1086,7 +1086,7 @@ function approve_grades_hod_form($form_state) {
   $form['srcfield']             = array('#type' => 'value', '#value' => $eduerpapprovalform->srcfield);
   $form['destfield']            = array('#type' => 'value', '#value' => $eduerpapprovalform->destfield);
 
-  $form['submit'] = array('#type' => 'submit', '#value' => 'Approve ' . $eduerpapprovalform->gradestexthoda . '.');
+  $form['submit'] = array('#type' => 'submit', '#value' => t('Approve !gradestexthoda.', array('!gradestexthoda' => $eduerpapprovalform->gradestexthoda)));
 
   return $form;
 }
@@ -1097,7 +1097,7 @@ function approve_grades_hod_form($form_state) {
  */
 function approve_grades_hod_form_validate($form, &$form_state) {
   if (empty($form_state['values']['comment'])) {
-    form_set_error('comment', 'You must enter a comment for the Dean!');
+    form_set_error('comment', t('You must enter a comment for the Dean!'));
   }
 }
 
@@ -1221,24 +1221,24 @@ function approve_grades_hod_form_submit($form, &$form_state) {
       $user_profile = NULL;
     }
 
-    $subject = "$gradestexthoda for $coursecode Approved by $name";
+    $subject = t('!gradestexthoda for !coursecode Approved by !name', array('!gradestexthoda' => $gradestexthoda, '!coursecode' => $coursecode, '!name' => $name));
 
     $body = '';
     if (!empty($user_profile->profile_first_name) && !empty($user_profile->profile_last_name)) {
       $middle = '';
       if (!empty($user_profile->profile_middle_name)) $middle = $user_profile->profile_middle_name . ' ';
-      $body .= "Dear $user_profile->profile_first_name {$middle}$user_profile->profile_last_name,\n\n";
+      $body .= t('Dear !name', array('!name' => "$user_profile->profile_first_name {$middle}$user_profile->profile_last_name")) . ",\n\n";
     }
 
-    $body .= "I have approved $gradestexthoda for $coursecode\n\n";
-    $body .= "URL: $course_url\n";
-    $body .= "Department: $department\n";
-    $body .= "Faculty: $college\n";
-    $body .= "Level: $level\n";
-    $body .= "Session: $session\n";
-    $body .= "Semester: $sem\n";
-    $body .= "Location: $loc\n\n";
-    $body .= "HOD's comment...\n";
+    $body .= t('I have approved !gradestexthoda for !coursecode', array('!gradestexthoda' => $gradestexthoda, '!coursecode' => $coursecode)) . "\n\n";
+    $body .= t('URL') . ": $course_url\n";
+    $body .= t('Department') . ": $department\n";
+    $body .= t('Faculty') . ": $college\n";
+    $body .= t('Level') . ": $level\n";
+    $body .= t('Session') . ": $session\n";
+    $body .= t('Semester') . ": $sem\n";
+    $body .= t('Location') . ": $loc\n\n";
+    $body .= t("HOD's comment") . "...\n";
     $body .= str_replace('<br />', "\n", $comment);
     $body .= "\n\n{$name}\n\n";
 
@@ -1295,17 +1295,17 @@ function approve_grades_hod_form_submit($form, &$form_state) {
       $destination_user = user_load($student_uid);
       $user_profile = new UserProfile($student_uid);
 
-      $subject = "$gradestexthoda for $coursecode Approved by $name";
+      $subject = t('!gradestexthoda for !coursecode Approved by !name', array('!gradestexthoda' => $gradestexthoda, '!coursecode' => $coursecode, '!name' => $name));
 
       $body = '';
       if (!empty($user_profile->profile_first_name) && !empty($user_profile->profile_last_name)) {
         $middle = '';
         if (!empty($user_profile->profile_middle_name)) $middle = $user_profile->profile_middle_name . ' ';
-        $body .= "Dear $user_profile->profile_first_name {$middle}$user_profile->profile_last_name,\n\n";
+        $body .= t('Dear !name', array('!name' => "$user_profile->profile_first_name {$middle}$user_profile->profile_last_name")) . ",\n\n";
       }
-      $body .= "I have approved $gradestexthoda for $coursecode\n\n";
-      $body .= "To view your grades go to $base_url/student\n";
-      $body .= "You will have to login first.\n\n";
+      $body .= t('I have approved !gradestexthoda for !coursecode', array('!gradestexthoda' => $gradestexthoda, '!coursecode' => $coursecode)) . "\n\n";
+      $body .= t('To view your grades go to') . " $base_url/student\n";
+      $body .= t('You will have to login first.') . "\n\n";
       $body .= "{$name}\n";
 
       $message = drupal_mail('grading', 'notifystudent', $destination_user->mail, language_default(), array(), $user->mail, FALSE);
@@ -1318,7 +1318,7 @@ function approve_grades_hod_form_submit($form, &$form_state) {
     }
   }
 
-  drupal_set_message('Approval successfull');
+  drupal_set_message(t('Approval successfull'));
 }
 
 
@@ -1334,7 +1334,7 @@ function approve_grades_dean_form($form_state) {
 
   $form['comment'] = array(
     '#type' => 'textarea',
-    '#title' => 'Enter a comment on the grades for the Record.',
+    '#title' => t('Enter a comment on the grades for the Record.'),
     '#cols' => 80,
     '#rows' => 5,
     '#required' => TRUE
@@ -1352,7 +1352,7 @@ function approve_grades_dean_form($form_state) {
   $form['gradestextdean']       = array('#type' => 'value', '#value' => $eduerpapprovalform->gradestextdean);
   $form['srcfield']             = array('#type' => 'value', '#value' => $eduerpapprovalform->srcfield);
 
-  $form['submit'] = array('#type' => 'submit', '#value' => 'Approve ' . $eduerpapprovalform->gradestextdean . '.');
+  $form['submit'] = array('#type' => 'submit', '#value' => t('Approve !gradestextdean.', array('!gradestextdean' => $eduerpapprovalform->gradestextdean)));
 
   return $form;
 }
@@ -1363,7 +1363,7 @@ function approve_grades_dean_form($form_state) {
  */
 function approve_grades_dean_form_validate($form, &$form_state) {
   if (empty($form_state['values']['comment'])) {
-    form_set_error('comment', 'You must enter a comment for the Record!');
+    form_set_error('comment', t('You must enter a comment for the Record!'));
   }
 }
 
@@ -1442,7 +1442,7 @@ function approve_grades_dean_form_submit($form, &$form_state) {
     $name = "$user_profile->profile_first_name {$middle}$user_profile->profile_last_name";
   }
 
-  $subject = "$gradestextdean for $coursecode Approved by $name";
+  $subject = t('!gradestextdean for !coursecode Approved by !name', array('!gradestextdean' => $gradestextdean, '!coursecode' => $coursecode, '!name' => $name));
 
   $node = new stdClass();
   $node->type                            = 'approval';
@@ -1467,7 +1467,7 @@ function approve_grades_dean_form_submit($form, &$form_state) {
   $node->field_action[0]['value']        = 'Approved by Dean';
   node_save($node);
 
-  drupal_set_message('Approval successfull');
+  drupal_set_message(t('Approval successfull'));
 }
 
 
@@ -1519,7 +1519,7 @@ function listlocations($coursecode, $session, $semesterwhere, $locationwhere) {
   while ($locationdetail = db_fetch_object($locationresult)) {
     $user_profile = new UserProfile($locationdetail->lecturer_uid);
 
-    echo "Location: $locationdetail->location (Lecturer: $user_profile->profile_first_name ";
+    echo t('Location') . ": $locationdetail->location (" . t('Lecturer') . ": $user_profile->profile_first_name ";
     if (!empty($user_profile->profile_middle_name)) echo $user_profile->profile_middle_name . ' ';
     echo "$user_profile->profile_last_name)<br />";
   }
