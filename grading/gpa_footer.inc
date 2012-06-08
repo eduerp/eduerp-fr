@@ -53,40 +53,40 @@ if (!empty($_SESSION['views']['gpa']['default']['programme']) &&
   $summaryrow = db_fetch_object($summaryrows);
 
   echo '<table class="body-table"><tbody>';
-  echo '<tr><th valign="top" class="table-label" colspan="2">RESULTS SUMMARY</th></tr>';
+  echo '<tr><th valign="top" class="table-label" colspan="2">' . t('RESULTS SUMMARY') . '</th></tr>';
 
   echo '<tr>';
-  echo '<td valign="top" class="table-label">Total No. of Registered Students</td>';
+  echo '<td valign="top" class="table-label">' . t('Total No. of Registered Students') . '</td>';
   echo '<td valign="top">' . $summaryrow->number_students . '</td>';
   echo '</tr>';
 
   echo '<tr>';
-  echo '<td valign="top" class="table-label">No. of Students that Completed Exams</td>';
+  echo '<td valign="top" class="table-label">' . t('No. of Students that Completed Exams') . '</td>';
   echo '<td valign="top">' . $summaryrow->sumfully . '</td>';
   echo '</tr>';
 
   echo '<tr>';
-  echo '<td valign="top" class="table-label">No. of Students that Partially Completed Exams</td>';
+  echo '<td valign="top" class="table-label">' . t('No. of Students that Partially Completed Exams') . '</td>';
   echo '<td valign="top">' . ($summaryrow->sumpart - $summaryrow->sumfully) . '</td>';
   echo '</tr>';
 
   echo '<tr>';
-  echo '<td valign="top" class="table-label">Number of Absent Students</td>';
+  echo '<td valign="top" class="table-label">' . t('Number of Absent Students') . '</td>';
   echo '<td valign="top">' . $summaryrow->sumnone . '</td>';
   echo '</tr>';
 
   $programmeenc = rawurlencode($programme);
   $sessionenc = rawurlencode($session);
-  echo '<tr><td colspan="2"><a href="' . $base_url . "/gpa_details?programme={$programmeenc}&level={$level}&session={$sessionenc}&semester={$semester}" . '">SHOW DETAILS</a></td></tr>';
+  echo '<tr><td colspan="2"><a href="' . $base_url . "/gpa_details?programme={$programmeenc}&level={$level}&session={$sessionenc}&semester={$semester}" . '">' . t('SHOW DETAILS') . '</a></td></tr>';
 
   echo '<tr><td colspan="2"></td></tr>';
 
-  if     ($summaryrow->examlocked == 0) echo '<tr><td colspan="2">Waiting on some Lecturer Submissions for Semester Exam</td></tr>';
-  elseif ($summaryrow->examlocked == 1) echo '<tr><td colspan="2">All Lecturers have Submitted Semester Exam Results</td></tr>';
-  elseif ($summaryrow->examlocked == 2) echo '<tr><td colspan="2">All Departments have Approved Semester Exam Results</td></tr>';
-  elseif ($summaryrow->examlocked == 3) echo '<tr><td colspan="2">All Faculties have Approved Semester Exam Results</td></tr>';
-  elseif ($summaryrow->examlocked == 4) echo '<tr><td colspan="2">Registrar has Approved Semester Exam Results</td></tr>';
-  elseif ($summaryrow->examlocked == 5) echo '<tr><td colspan="2">Semester Exam Results Fully Approved</td></tr>';
+  if     ($summaryrow->examlocked == 0) echo '<tr><td colspan="2">' . t('Waiting on some Lecturer Submissions for Semester Exam') . '</td></tr>';
+  elseif ($summaryrow->examlocked == 1) echo '<tr><td colspan="2">' . t('All Lecturers have Submitted Semester Exam Results') . '</td></tr>';
+  elseif ($summaryrow->examlocked == 2) echo '<tr><td colspan="2">' . t('All Departments have Approved Semester Exam Results') . '</td></tr>';
+  elseif ($summaryrow->examlocked == 3) echo '<tr><td colspan="2">' . t('All Faculties have Approved Semester Exam Results') . '</td></tr>';
+  elseif ($summaryrow->examlocked == 4) echo '<tr><td colspan="2">' . t('Registrar has Approved Semester Exam Results') . '</td></tr>';
+  elseif ($summaryrow->examlocked == 5) echo '<tr><td colspan="2">' . t('Semester Exam Results Fully Approved') . '</td></tr>';
 
   echo '</tbody></table>';
 }
