@@ -34,7 +34,7 @@ if (!empty($_SESSION['views']['gpa_details']['default']['programme']) &&
   while ($courserow = db_fetch_object($courserows)) {
     if ($first) {
       echo '<table class="body-table"><tbody>';
-      echo '<tr><th valign="top" class="table-label">Click on a course below to see details</th></tr>';
+      echo '<tr><th valign="top" class="table-label">' . t('Click on a course below to see details') . '</th></tr>';
       $first = false;
     }
 
