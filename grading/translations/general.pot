@@ -3,15 +3,18 @@
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
+#  computed.inc: n/a
 #  course_grades_footer.inc: n/a
+#  gpa_footer.inc: n/a
 #  grading.module: n/a
+#  gpa_details_footer.inc: n/a
 #  grading.info: n/a
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2012-06-01 16:56+0100\n"
+"POT-Creation-Date: 2012-06-08 18:30+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -19,6 +22,30 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: computed.inc:407
+msgid "First Continuous Assessment Grade"
+msgstr ""
+
+#: computed.inc:408
+msgid "Second Continuous Assessment Grade"
+msgstr ""
+
+#: computed.inc:409
+msgid "Third Continuous Assessment Grade"
+msgstr ""
+
+#: computed.inc:410
+msgid "Fourth Continuous Assessment Grade"
+msgstr ""
+
+#: computed.inc:411
+msgid "Final Exam Grade"
+msgstr ""
+
+#: computed.inc:413
+msgid "!gradestext for !coursecode for student '!studentname' Changed by !name"
+msgstr ""
 
 #: course_grades_footer.inc:67
 msgid "Maximum marks allowed..."
@@ -32,7 +59,7 @@ msgstr ""
 msgid "Exam Score"
 msgstr ""
 
-#: course_grades_footer.inc:85
+#: course_grades_footer.inc:85 gpa_footer.inc:56
 msgid "RESULTS SUMMARY"
 msgstr ""
 
@@ -268,52 +295,60 @@ msgstr ""
 msgid "Lecturer"
 msgstr ""
 
+#: gpa_details_footer.inc:37
+msgid "Click on a course below to see details"
+msgstr ""
+
+#: gpa_footer.inc:59 grading.module:879;1852
+msgid "Total No. of Registered Students"
+msgstr ""
+
+#: gpa_footer.inc:64 grading.module:884;1853
+msgid "No. of Students that Completed Exams"
+msgstr ""
+
+#: gpa_footer.inc:69 grading.module:889;1854
+msgid "No. of Students that Partially Completed Exams"
+msgstr ""
+
+#: gpa_footer.inc:74 grading.module:894
+msgid "Number of Absent Students"
+msgstr ""
+
+#: gpa_footer.inc:80
+msgid "SHOW DETAILS"
+msgstr ""
+
+#: gpa_footer.inc:84 grading.module:936;981
+msgid "Waiting on some Lecturer Submissions for Semester Exam"
+msgstr ""
+
+#: gpa_footer.inc:85 grading.module:931;984
+msgid "All Lecturers have Submitted Semester Exam Results"
+msgstr ""
+
+#: gpa_footer.inc:86 grading.module:937;987
+msgid "All Departments have Approved Semester Exam Results"
+msgstr ""
+
+#: gpa_footer.inc:87 grading.module:938;1005;1027
+msgid "All Faculties have Approved Semester Exam Results"
+msgstr ""
+
+#: gpa_footer.inc:88 grading.module:939;1024
+msgid "Registrar has Approved Semester Exam Results"
+msgstr ""
+
+#: gpa_footer.inc:89 grading.module:940;1032
+msgid "Semester Exam Results Fully Approved"
+msgstr ""
+
 #: grading.module:658
 msgid "Show Grade Statistics and Approval Status for above selection"
 msgstr ""
 
-#: grading.module:879;1852
-msgid "Total No. of Registered Students"
-msgstr ""
-
-#: grading.module:884;1853
-msgid "No. of Students that Completed Exams"
-msgstr ""
-
-#: grading.module:889;1854
-msgid "No. of Students that Partially Completed Exams"
-msgstr ""
-
-#: grading.module:894
-msgid "Number of Absent Students"
-msgstr ""
-
 #: grading.module:921
 msgid "View Programme Details..."
-msgstr ""
-
-#: grading.module:931;984
-msgid "All Lecturers have Submitted Semester Exam Results"
-msgstr ""
-
-#: grading.module:936;981
-msgid "Waiting on some Lecturer Submissions for Semester Exam"
-msgstr ""
-
-#: grading.module:937;987
-msgid "All Departments have Approved Semester Exam Results"
-msgstr ""
-
-#: grading.module:938;1005;1027
-msgid "All Faculties have Approved Semester Exam Results"
-msgstr ""
-
-#: grading.module:939;1024
-msgid "Registrar has Approved Semester Exam Results"
-msgstr ""
-
-#: grading.module:940;1032
-msgid "Semester Exam Results Fully Approved"
 msgstr ""
 
 #: grading.module:945
