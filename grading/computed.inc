@@ -404,13 +404,13 @@ function updatestudentgpa($gp, $uid, $course_instance_nid, $examscorelocked, $ca
       }
 
       $gradestexts = array(
-        'field_ca1' => 'First Continuous Assessment Grade',
-        'field_ca2' => 'Second Continuous Assessment Grade',
-        'field_ca3' => 'Third Continuous Assessment Grade',
-        'field_ca4' => 'Fourth Continuous Assessment Grade',
-        'field_exam_score' => 'Final Exam Grade');
+        'field_ca1' => t('First Continuous Assessment Grade'),
+        'field_ca2' => t('Second Continuous Assessment Grade'),
+        'field_ca3' => t('Third Continuous Assessment Grade'),
+        'field_ca4' => t('Fourth Continuous Assessment Grade'),
+        'field_exam_score' => t('Final Exam Grade'));
       $gradestext = $gradestexts[$field_name];
-      $subject = "$gradestext for $coursecode for student '$studentname' Changed by $name";
+      $subject = t("!gradestext for !coursecode for student '!studentname' Changed by !name", array('!gradestext' => $gradestext, '!coursecode' => $coursecode, '!studentname' => $studentname, '!name' => $name));
 
       $coursecodeenc = rawurlencode($coursecode);
       $sessionenc    = rawurlencode($session);
