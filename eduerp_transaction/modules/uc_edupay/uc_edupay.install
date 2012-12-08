@@ -1,0 +1,246 @@
+<?php
+/**
+ * @author Kayode Odeyemi
+ * Installs uc_edupay
+ */
+
+function uc_edupay_schema() {
+  $schema['fees_order'] = array(
+  'description' => t('Eduerp Fees orders'),
+  'fields' => array(
+    'fees_order_id' => array(
+      'description' => t('Fees orders serial field'),
+      'type' => 'serial',
+      'not null' => TRUE,
+    ),
+    'product_nid' => array(
+      'description' => t('The product node id'),
+      'type' => 'int',
+      'not null' => FALSE,
+    ),
+    'nid' => array(
+      'description' => t('The product attribute node id. E.g Fee Structure. This is different from the product node id'),
+      'type' => 'int',
+      'not null' => FALSE,
+    ),
+    'type' => array(
+      'description' => t('The fees type. Fees or hostel'),
+      'type' => 'varchar',
+      'length' => '10',
+      'not null' => FALSE,
+    ),
+    'cart_item_id' => array(
+      'description' => t('The ubercart cart item id'),
+      'type' => 'int',
+      'not null' => FALSE,
+    ),
+    'title' => array(
+      'description' => t('The fees order product node title. E.g Tuition, Medical fees'),
+      'type' => 'varchar',
+      'length' => '255',
+      'not null' => FALSE,
+    ),
+    'price' => array(
+      'description' => t('The fees order price'),
+      'type' => 'numeric',
+      'not null' => FALSE,
+      'default' => 0,
+      'precision' => '16',
+      'scale' => '5',
+    ),
+    'nationality' => array(
+      'description' => t('Part of the fees structure setup field to record nationality'),
+      'type' => 'varchar',
+      'length' => '255',
+      'not null' => FALSE,
+    ),
+    'programme' => array(
+      'description' => t('Part of the fees structure setup field to record student programme or course'),
+      'type' => 'varchar',
+      'length' => '255',
+      'not null' => FALSE,
+    ),
+    'level_name' => array(
+      'description' => t('Part of the fees structure setup field to record student level. Freshman or returning'),
+      'type' => 'varchar',
+      'length' => '255',
+      'not null' => FALSE,
+    ),
+    'session' => array(
+      'description' => t('Part of the fees structure setup field to record the current session a student is paying fees for'),
+      'type' => 'varchar',
+      'length' => '255',
+      'not null' => FALSE,
+    ),
+    'late_registration_date' => array(
+      'description' => t('Part of the fees structure setup field to record a late registration date value'),
+      'type' => 'int',
+      'not null' => FALSE,
+      'default' => 0,
+    ),
+    'late_registration_amount' => array(
+      'description' => t('Part of the fees structure setup field to record a late registration date amount'),
+      'type' => 'numeric',
+      'not null' => FALSE,
+      'default' => 0,
+      'precision' => '16',
+      'scale' => '5',
+    ),
+    'late_registration_nid' => array(
+      'description' => t('Late registration node nid'),
+      'type' => 'int',
+      'not null' => FALSE,
+    ),
+    'late_registration_description' => array(
+      'description' => t('Late registration description'),
+      'type' => 'varchar',
+      'length' => '225',
+      'not null' => FALSE,
+    ),
+    'uid' => array(
+      'description' => t('The Student user id'),
+      'type' => 'int',
+      'not null' => FALSE,
+    ),
+    'jambno' => array(
+      'description' => t('The student JAMB number'),
+      'type' => 'varchar',
+      'length' => '255',
+      'not null' => FALSE,
+    ),
+    'fullnames' => array(
+      'description' => t('The student full names'),
+      'type' => 'varchar',
+      'length' => '255',
+      'not null' => FALSE,
+    ),
+    'institution' => array(
+      'description' => t('The institution where this order originates from'),
+      'type' => 'int',
+      'not null' => FALSE,
+    ),
+    'status' => array(
+      'description' => t('The Fees order status'),
+      'type' => 'varchar',
+      'length' => '255',
+      'not null' => FALSE,
+    ),
+    'email' => array(
+      'description' => t('The student email address'),
+      'type' => 'varchar',
+      'length' => '96',
+      'not null' => FALSE,
+    ),
+    'order_id' => array(
+      'description' => t('The Fees Order id'),
+      'type' => 'int',
+      'not null' => FALSE,
+    ),
+    'scholarship' => array(
+      'description' => t('Whether this fee item has scholarship applicable to it'),
+      'type' => 'int',
+      'not null' => FALSE,
+    ),
+    'allow_instalment' => array(
+      'description' => t('Whether instalmental payments is allowed on this fee item. '),
+      'type' => 'int',
+      'size' => 'medium',
+      'not null' => FALSE,
+    ),
+    'hostel_nid' => array(
+      'description' => t('Hostel node id'),
+      'type' => 'int',
+      'not null' => FALSE,
+    ),
+    'hostel_type' => array(
+      'description' => t('Hostel fees type'),
+      'type' => 'varchar',
+      'length' => '20',
+      'not null' => FALSE,
+    ),
+    'expiry_date' => array(
+      'description' => t('Date when the Fee was marked Paid with EduPay callback to EduERP'),
+      'type' => 'int',
+      'not null' => FALSE,
+    ),
+    'attributes' => array(
+      'description' => t('Fees product attribute. This is usually the node title of the Fees Structure'),
+      'type' => 'varchar',
+      'length' => '255',
+      'not null' => FALSE,
+    ),
+    'module' => array(
+      'description' => t('The Ubercart module used to process fees'),
+      'type' => 'varchar',
+      'length' => '15',
+      'not null' => FALSE,
+    ),
+    'fees_format' => array(
+      'description' => t('Installment Type'),
+      'type' => 'varchar',
+      'length' => '20',
+      'not null' => FALSE,
+    ),
+    'college' => array(
+      'description' => t('Faculty'),
+      'type' => 'varchar',
+      'length' => '255',
+      'not null' => FALSE,
+    ),
+    'course' => array(
+      'description' => t('Programme'),
+      'type' => 'varchar',
+      'length' => '255',
+      'not null' => FALSE,
+    ),
+    'original_amount' => array(
+      'description' => t('Price before any zeroing for Scholarship'),
+      'type' => 'numeric',
+      'not null' => FALSE,
+      'default' => 0,
+      'precision' => '16',
+      'scale' => '5',
+    ),
+    'scholarship_type' => array(
+      'description' => t('Scholarship Type'),
+      'type' => 'varchar',
+      'length' => '60',
+      'not null' => FALSE,
+    ),
+    'sponsor' => array(
+      'description' => t('State Sponsor'),
+      'type' => 'varchar',
+      'length' => '60',
+      'not null' => FALSE,
+    ),
+  ),
+  'primary key' => array('fees_order_id'),
+  'indexes' => array(
+    'uid' => array('uid', 'status'),
+    'order_id' => array('order_id'),
+  ),
+  );
+  return $schema;
+}
+
+
+/**
+ * Implememntation of hook_install
+ */
+function uc_edupay_install() {
+  drupal_install_schema('uc_edupay');
+}
+
+
+/**
+ * Implementation of hook_uninstall
+ */
+function uc_edupay_uninstall() {
+}
+
+
+function uc_edupay_update_6100() {
+  db_query("ALTER TABLE {fees_order} CHANGE `price` `price` DECIMAL( 16, 5 ) NULL DEFAULT '0'");
+  db_query("ALTER TABLE {fees_order} CHANGE `late_registration_amount` `late_registration_amount` DECIMAL( 16, 5 ) NULL DEFAULT '0'");
+  db_query("ALTER TABLE {fees_order} CHANGE `late_registration_date` `late_registration_date` INT( 50 ) NULL DEFAULT '0'");
+}

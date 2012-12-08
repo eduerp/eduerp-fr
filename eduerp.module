@@ -1,0 +1,309 @@
+<?php
+
+/**
+ * Implementation of hook_menu(), called to generate menus when module setup at admin/build/modules is saved
+ *
+ * <p>Additionally this Doc Block Provides PHPDoc links to the Key Entry Points into EduERP (mostly Menus) so they can be easily found in the code:-</p>
+ *
+ * <p>Semester Administration Menu: {@link semester_admin()}</p>
+ *
+ * <p>Menu to display Staff & their EduERP Roles and a link to Assign Roles for the Staff member: {@link search_staff_list()}</p>
+ *
+ * <p>Menu to assign EduERP roles for Staff: {@link staff_assign_role()}</p>
+ *
+ * <p>Menu to Display Courses and Lecturers for a Department for the Current Session: {@link staff_course_list()}</p>
+ *
+ * <p>Menu to Display Department & Head of Department and a link to Courses for the Department: {@link staff_department_list()}</p>
+ *
+ * <p>Menu to display some Staff data: {@link staff_view_form()}</p>
+ *
+ * <p>Menu to Create/Update a Faculty: {@link staff_create_edit_faculty()}</p>
+ *
+ * <p>Menu to Create/Update a Department: {@link staff_create_edit_dept()}</p>
+ *
+ * <p>Menu to Create/Update a Course: {@link staff_create_edit_course()}</p>
+ *
+ * <p>Menu to Create/Update a Programme: {@link staff_create_edit_programme()}</p>
+ *
+ * <p>Menu to Verify all Courses needed for a Programme are being run for a Session and Semester: {@link staff_verify_assigned_course()}</p>
+ *
+ * <p>Menu to Check for Missing Course Instances for a Semester : {@link staff_check_for_missing_courses()}</p>
+ *
+ * <p>Menu to Check have all existing Courses required for all Programmes been Verified: {@link staff_check_verify_programme_courses()}</p>
+ *
+ * <p>Menu to Display Student Progress towards Graduation: {@link staff_student_progress_qualification()}</p>
+ *
+ * <p>Menu to List of Students who have Not Registered for a Semester: {@link staff_unregistered_students()}</p>
+ *
+ * <p>Menu to Mark a Course Registration as Dropped: {@link staff_drop_registered_course()}</p>
+ *
+ * <p>Menu to Manually Register a Student in a Course: {@link staff_manual_course_reg()}</p>
+ *
+ * <p>Menu to Change a Student's Programme: {@link staff_change_student_programme()}</p>
+ *
+ * <p>Menu to Change Programme for Uncleared Candidate: {@link staff_change_uncleared_candidate_programme()}</p>
+ *
+ * <p>Menu for School Fees Administration: {@link staff_school_fees_admin()}</p>
+ *
+ * <p>Menu to Update Fee Settings: {@link staff_school_fees_update_settings()}</p>
+ *
+ * <p>Menu to Create / Modify School Fee Item: {@link staff_school_fees_create_modify_school_fee_item()}</p>
+ *
+ * <p>Menu to Create / Modify School Fee Setup: {@link staff_school_fees_create_modify_school_fee_setup()}</p>
+ *
+ * <p>Menu to Create/Update Scholarship Types: {@link staff_school_fees_create_modify_scholarship_types()}</p>
+ *
+ * <p>Menu to Authorise Scholarship: {@link staff_school_fees_scholarship_payment()}</p>
+ *
+ * <p>Menu to Authorise Instalment Payment: {@link staff_school_fees_authorise_instalment_payment()}</p>
+ *
+ * <p>Menu to Remove Pending Invoices: {@link staff_school_fees_remove_pending_orders()}</p>
+ *
+ * <p>Menu to Add Once Off Invoice: {@link staff_add_once_off_invoice()}</p>
+ *
+ * <p>Menu to Archive a Student who does not yet have any Exam Marks: {@link staff_archive_student()}</p>
+ *
+ * <p>Menus for Grading Statistics/Details(/Approvals)...</p>
+ * <p>{@link grading_stats_department_form()}</p>
+ * <p>{@link grading_stats_uni_form()}</p>
+ *
+ * <p>For various levels of Submission/Approval of Grades...</p>
+ * <p>{@link approve_grades_lecturer_form()}</p>
+ * <p>{@link unlock_grades_hod_form()}</p>
+ * <p>{@link approve_grades_hod_form()}</p>
+ * <p>{@link approve_grades_dean_form()}</p>
+ * <p>{@link approve_grades_registrar_form()}</p>
+ * <p>{@link approve_grades_vc_form()}</p>
+ *
+ * <p>Menu for Student Details: {@link grading_student_details_form()}</p>
+ *
+ * <p>Handle Student Clearance: {@link student_clearance()}</p>
+ *
+ * <p>For Student Registration of Courses: {@link student_course_form()}</p>
+ *
+ * <p>Menu for a Student to Reserve a Hostel place: {@link student_hostel_reservation()}</p>
+ *
+ * <p>Menu for a Student to start the Fees Payment process: {@link uc_eduerp_fees_pay_fees()}</p>
+ *
+ * <p>Handling POST from EduPay Server to indicate Payment Received or Cancelled: {@link uc_eduerp_fees_update_fees()}</p>
+ *
+ * <p>Form to configure settings for EduPay Communication: {@link uc_edupay_config_form()}</p>
+ *
+ * <p>Menu to for EduERP settings: {@link eduerp_admin_settings()}</p>
+ */
+function eduerp_menu() {
+
+  $items['admin/settings/eduerp'] = array (
+    'title' => 'EduERP Configuration',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array (
+      'eduerp_admin_settings'
+    ),
+    'access arguments' => array (
+      'administer site configuration'
+    ),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+
+/**
+ * implements the simpletest testing framework hook
+ * for more information see http://drupal.org/project/simpletest
+ */
+function eduerp_simpletest() {
+  $module_name = "eduerp";
+  $dir = drupal_get_path('module', $module_name) . "/tests";
+  $tests = file_scan_directory($dir, '\.test$');
+  return array_keys($tests);
+}
+
+
+/**
+ * System Settings Form to handle 'admin/settings/eduerp' menu to for EduERP settings
+ */
+function eduerp_admin_settings() {
+  $form['RegisterAllCoursesatStartofSession'] = array(
+    '#type' => 'checkbox',
+    '#title' => 'Register All Courses at Start of Session',
+    '#default_value' => variable_get('RegisterAllCoursesatStartofSession', 0),
+    '#description' => 'This switch determines whether students register courses for both semesters at the start of the first semester',
+    '#tree' => TRUE
+  );
+
+  $form['CombineCreditLoadTestsforBothSemesters'] = array(
+    '#type' => 'checkbox',
+    '#title' => 'Combine Credit Load Tests for Both Semesters',
+    '#default_value' => variable_get('CombineCreditLoadTestsforBothSemesters', 0),
+    '#description' => "This switch determines whether student's Credit Loads are tested against total limits for both semesters rather than individually checked against limits for each semester",
+    '#tree' => TRUE
+  );
+
+  $form['RegistrarApprovesGrades'] = array(
+    '#type' => 'checkbox',
+    '#title' => 'RegistrarApprovesGrades',
+    '#default_value' => variable_get('RegistrarApprovesGrades', 0),
+    '#description' => 'This switch determines whether student grades are approved by the Registrar (if not they go straight to the Vice Chancellor)',
+    '#tree' => TRUE
+  );
+
+  $form['eduerp_institution_current'] = array(
+    '#type' => 'textfield',
+    '#title' => 'University Name',
+    '#default_value' => variable_get('eduerp_institution_current', ''),
+  );
+
+  $form['eduerp_student_guidlines_url'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Student Guidelines URL',
+    '#default_value' => variable_get('eduerp_student_guidlines_url', ''),
+  );
+
+  $form['eduerp_zimbra_webmail_url'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Student Webmail URL',
+    '#default_value' => variable_get('eduerp_zimbra_webmail_url', ''),
+  );
+
+  $form['eduerp_agreement'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Eduerp Agreement'),
+    '#default_value' => variable_get('eduerp_agreement', ''),
+    '#description' => t("Enter here the agreement (terms of use) that binds the student and the institution.")
+  );
+
+	if (!module_exists('token')) {
+    $form['content']['#description'] .= ' ' . t('Optionally, you may install <a href="http://drupal.org/project/token">Token module</a> to insert placeholders   into the node body.');
+  }
+  else {
+    $form['tokens'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Tokens'),
+      '#description' => theme('token_help', array('global', 'user', 'node', 'order')),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+    );
+	}
+
+  return system_settings_form($form);
+}
+
+
+/**
+ * loads a user's profile for reading and modification
+ * @param int $uid specifies the user id of the profile to load
+ * @param string $profile_type (optional) specifies the actual
+ *  profile type to load
+ * @return object returns the profile node or false if there's none
+ */
+function eduerp_load_profile($uid, $profile_type = 'profile') {
+  if ($node = node_load(array('type' => $profile_type, 'uid' => $uid))) {
+    return $node;
+  } else {
+    return false;
+  }
+}
+
+
+/**
+ * saves a user profile node - nothing fanciful just a wrapper
+ *
+ * @param object $node
+ * @return void since the node_save api function doesn't return
+ *  any status, we cannot return one.
+ */
+function eduerp_save_profile($node) {
+  node_save($node);
+}
+
+
+/**
+ * class definition for User profiles
+ * @var int $uid stores the userid that is being used to retrieve the profile nodes
+ * @var array $field_map field map is used to store the node/field mapping
+ * @var array $profile_nodes stores the node objects used as content profiles for the user
+ */
+class UserProfile {
+  var $uid;
+  var $field_map = array();
+  var $profile_nodes = array();
+
+  /**
+   * class constructor - instantiates the object
+   * and loads necessary nodes.
+   * @var int $uid User id for the user
+   * @return object
+   */
+  function __construct($uid) {
+    $this->uid = $uid;
+
+    // obtain all content profile types and use that to map
+    // the fields to the object.
+    $content_profiles = content_profile_get_types('names');
+
+    // after obtainining the content profile types, we'll retrieve
+    // those that have been defined for this user.
+    foreach ($content_profiles as $content_profile => $content_profile_name) {
+      if ($node = eduerp_load_profile($this->uid, $content_profile)) {
+        $this->profile_nodes[$content_profile] = $node;
+      }
+    }
+
+    $this->_hydrate_fields();
+  }
+
+  /**
+   * _hydrate_fields - loads fields from the content profile nodes
+   * @return void
+   */
+  private function _hydrate_fields() {
+    foreach ($this->profile_nodes as $node) {
+      // obtain visible properties for nodes and set them
+      // it sets $this->profile_first_name = $node->field_profile_first_name
+      // for instance (supports only native type and nodereference
+      // field types)
+      // TODO: add support for other node field types
+      foreach ($node as $key => $value) {
+        if (preg_match('/^field\_(.*)/', $key, $matches)) {
+          $node_value = $node->$key;
+
+          // check the existence of readable values
+          if (is_array($node_value) && is_array($node_value[0]) && array_key_exists('value', $node_value[0])) {
+            $this->$matches[1] = $node_value[0]['value'];
+            $this->field_map[$matches[1]] = $node->type;
+          } elseif (is_array($node_value) && is_array($node_value[0])  && array_key_exists('nid', $node_value[0])) {
+            $this->$matches[1] = $node_value[0]['nid'];
+            $this->field_map[$matches[1]] = $node->type;
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * this method saves all the attached content profile nodes
+   * @return void
+   */
+  public function save() {
+    // iterate through all the profile fields and store
+    // their values in the respective nodes
+    foreach ($this as $key => $value) {
+      if (isset($this->field_map[$key])) {
+        $node_field_name = 'field_' . $key;
+        // must be returned as a reference if not
+        // it will not be saved.
+        $node_field =& $this->profile_nodes[$this->field_map[$key]]->$node_field_name;
+        if (array_key_exists('value', $node_field[0])) {
+          $node_field[0]['value'] = $value;
+        } elseif (array_key_exists('nid', $node_field[0])) {
+          $node_field[0]['nid'] = $value;
+        }
+      }
+    }
+    foreach ($this->profile_nodes as $node) {
+      node_save($node);
+    }
+  }
+}

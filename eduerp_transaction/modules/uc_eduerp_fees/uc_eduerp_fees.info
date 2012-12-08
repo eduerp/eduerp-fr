@@ -1,0 +1,11 @@
+; $Id
+name = Ubercart Eduerp Fees
+description = EduERP Ubercart fees integration
+dependencies[] = uc_cart
+dependencies[] = staff
+dependencies[] = student
+dependencies[] = uc_edupay
+dependencies[] = views
+package = EduERP 
+core = 6.x
+project = "uc_eduerp_fees"

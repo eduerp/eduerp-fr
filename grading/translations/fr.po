@@ -1,0 +1,613 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  computed.inc: n/a
+#  course_grades_footer.inc: n/a
+#  gpa_footer.inc: n/a
+#  grading.module: n/a
+#  gpa_details_footer.inc: n/a
+#  grading.info: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2012-06-08 18:30+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: computed.inc:407
+msgid "First Continuous Assessment Grade"
+msgstr ""
+
+#: computed.inc:408
+msgid "Second Continuous Assessment Grade"
+msgstr ""
+
+#: computed.inc:409
+msgid "Third Continuous Assessment Grade"
+msgstr ""
+
+#: computed.inc:410
+msgid "Fourth Continuous Assessment Grade"
+msgstr ""
+
+#: computed.inc:411
+msgid "Final Exam Grade"
+msgstr ""
+
+#: computed.inc:413
+msgid "!gradestext for !coursecode for student '!studentname' Changed by !name"
+msgstr ""
+
+#: course_grades_footer.inc:67
+msgid "Maximum marks allowed..."
+msgstr ""
+
+#: course_grades_footer.inc:68
+msgid "CA"
+msgstr ""
+
+#: course_grades_footer.inc:69;180
+msgid "Exam Score"
+msgstr ""
+
+#: course_grades_footer.inc:85 gpa_footer.inc:56
+msgid "RESULTS SUMMARY"
+msgstr ""
+
+#: course_grades_footer.inc:95
+msgid "Number of !field_grade_value Grades"
+msgstr ""
+
+#: course_grades_footer.inc:102
+msgid "Number of Missing Grades"
+msgstr ""
+
+#: course_grades_footer.inc:107
+msgid "Total Number of Students"
+msgstr ""
+
+#: course_grades_footer.inc:138 grading.module:1060
+msgid "Continuous Assessment 1"
+msgstr ""
+
+#: course_grades_footer.inc:140;151;162;173;182
+msgid "Not Submitted by Lecturer"
+msgstr ""
+
+#: course_grades_footer.inc:141;152;163;174;183
+msgid "All Submitted to Department"
+msgstr ""
+
+#: course_grades_footer.inc:142;153;164;175
+msgid "All Approved by Department"
+msgstr ""
+
+#: course_grades_footer.inc:149 grading.module:1061
+msgid "Continuous Assessment 2"
+msgstr ""
+
+#: course_grades_footer.inc:160 grading.module:1062
+msgid "Continuous Assessment 3"
+msgstr ""
+
+#: course_grades_footer.inc:171 grading.module:1063
+msgid "Continuous Assessment 4"
+msgstr ""
+
+#: course_grades_footer.inc:184
+msgid "All Submitted to Faculty"
+msgstr ""
+
+#: course_grades_footer.inc:186
+msgid "All Submitted to Registrar"
+msgstr ""
+
+#: course_grades_footer.inc:187;189
+msgid "All Submitted to Vice Chancellor"
+msgstr ""
+
+#: course_grades_footer.inc:190
+msgid "All Approved by Vice Chancellor"
+msgstr ""
+
+#: course_grades_footer.inc:242
+msgid "THERE IS NO HEAD OF DEPARTMENT OR GRADE EDITOR ASSIGNED FOR THIS DEPARTMENT, ONE MUST BE ASSIGNED"
+msgstr ""
+
+#: course_grades_footer.inc:248;309;349;400
+msgid "First set of Continuous Assessment Grades"
+msgstr ""
+
+#: course_grades_footer.inc:253;304;356;406
+msgid "Second set of Continuous Assessment Grades"
+msgstr ""
+
+#: course_grades_footer.inc:258;299;363;412
+msgid "Third set of Continuous Assessment Grades"
+msgstr ""
+
+#: course_grades_footer.inc:263;294;370;418
+msgid "Fourth set of Continuous Assessment Grades"
+msgstr ""
+
+#: course_grades_footer.inc:268;289;377;424
+msgid "Final Exam Grades"
+msgstr ""
+
+#: course_grades_footer.inc:277;388;434
+msgid "YOU MUST CHOOSE A SPECIFIC LOCATION ABOVE IF YOU WANT TO APPROVE GRADES. CHOICES ARE..."
+msgstr ""
+
+#: course_grades_footer.inc:318
+msgid "YOU MUST CHOOSE A SPECIFIC LOCATION ABOVE IF YOU WANT TO UNLOCK GRADES. CHOICES ARE..."
+msgstr ""
+
+#: course_grades_footer.inc:343
+msgid "THERE IS NO DEAN OR GRADE EDITOR ASSIGNED FOR THIS FACULTY, ONE MUST BE ASSIGNED"
+msgstr ""
+
+#: course_grades_footer.inc:454
+msgid "Enter a comment on the grades for the HOD."
+msgstr ""
+
+#: course_grades_footer.inc:473
+msgid "Approve !gradestext."
+msgstr ""
+
+#: course_grades_footer.inc:484
+msgid "You must enter a comment for the Head of Department!"
+msgstr ""
+
+#: course_grades_footer.inc:777
+msgid "!gradestext for !coursecode Approved by !name"
+msgstr ""
+
+#: course_grades_footer.inc:783;970;1031;1230;1304 grading.module:1279;2265
+msgid "Dear !name"
+msgstr ""
+
+#: course_grades_footer.inc:786
+msgid "I have approved !gradestext for !coursecode"
+msgstr ""
+
+#: course_grades_footer.inc:787;974;1035;1234 grading.module:1283
+msgid "URL"
+msgstr ""
+
+#: course_grades_footer.inc:788;975;1036;1235 grading.module:600;1160;1284;1344;1733;2096;2179
+msgid "Department"
+msgstr ""
+
+#: course_grades_footer.inc:789;976;1037;1236 grading.module:1285;1720
+msgid "Faculty"
+msgstr ""
+
+#: course_grades_footer.inc:790;977;1038;1237 grading.module:645;1286;1707;2099;2182
+msgid "Level"
+msgstr ""
+
+#: course_grades_footer.inc:791;978;1039;1238 grading.module:615;1287;1678;2097;2180
+msgid "Session"
+msgstr ""
+
+#: course_grades_footer.inc:792;979;1040;1239 grading.module:630;1288;1693;2098;2181
+msgid "Semester"
+msgstr ""
+
+#: course_grades_footer.inc:793;980;1041;1240;1522
+msgid "Location"
+msgstr ""
+
+#: course_grades_footer.inc:794
+msgid "Lecturer's comment"
+msgstr ""
+
+#: course_grades_footer.inc:834;1321;1470
+msgid "Approval successfull"
+msgstr ""
+
+#: course_grades_footer.inc:850
+msgid "Enter a comment on the grades for the Lecturer."
+msgstr ""
+
+#: course_grades_footer.inc:869
+msgid "Unlock the !gradestexthod for the lecturer to re-edit."
+msgstr ""
+
+#: course_grades_footer.inc:880
+msgid "You must enter a comment for the Lecturer!"
+msgstr ""
+
+#: course_grades_footer.inc:964;1025
+msgid "!gradestexthod for !coursecode Unlocked by !name"
+msgstr ""
+
+#: course_grades_footer.inc:973;1034
+msgid "I have unlocked !gradestexthod for !coursecode"
+msgstr ""
+
+#: course_grades_footer.inc:981;1042
+msgid "Head of Department's comment"
+msgstr ""
+
+#: course_grades_footer.inc:1053
+msgid "Unlocking successfull"
+msgstr ""
+
+#: course_grades_footer.inc:1069
+msgid "Enter a comment on the grades for the Dean."
+msgstr ""
+
+#: course_grades_footer.inc:1089
+msgid "Approve !gradestexthoda."
+msgstr ""
+
+#: course_grades_footer.inc:1100
+msgid "You must enter a comment for the Dean!"
+msgstr ""
+
+#: course_grades_footer.inc:1224;1298
+msgid "!gradestexthoda for !coursecode Approved by !name"
+msgstr ""
+
+#: course_grades_footer.inc:1233;1306
+msgid "I have approved !gradestexthoda for !coursecode"
+msgstr ""
+
+#: course_grades_footer.inc:1241
+msgid "HOD's comment"
+msgstr ""
+
+#: course_grades_footer.inc:1307 grading.module:2268
+msgid "To view your grades go to"
+msgstr ""
+
+#: course_grades_footer.inc:1308 grading.module:2269
+msgid "You will have to login first."
+msgstr ""
+
+#: course_grades_footer.inc:1337
+msgid "Enter a comment on the grades for the Record."
+msgstr ""
+
+#: course_grades_footer.inc:1355
+msgid "Approve !gradestextdean."
+msgstr ""
+
+#: course_grades_footer.inc:1366 grading.module:1374
+msgid "You must enter a comment for the Record!"
+msgstr ""
+
+#: course_grades_footer.inc:1445
+msgid "!gradestextdean for !coursecode Approved by !name"
+msgstr ""
+
+#: course_grades_footer.inc:1522
+msgid "Lecturer"
+msgstr ""
+
+#: gpa_details_footer.inc:37
+msgid "Click on a course below to see details"
+msgstr ""
+
+#: gpa_footer.inc:59 grading.module:879;1852
+msgid "Total No. of Registered Students"
+msgstr ""
+
+#: gpa_footer.inc:64 grading.module:884;1853
+msgid "No. of Students that Completed Exams"
+msgstr ""
+
+#: gpa_footer.inc:69 grading.module:889;1854
+msgid "No. of Students that Partially Completed Exams"
+msgstr ""
+
+#: gpa_footer.inc:74 grading.module:894
+msgid "Number of Absent Students"
+msgstr ""
+
+#: gpa_footer.inc:80
+msgid "SHOW DETAILS"
+msgstr ""
+
+#: gpa_footer.inc:84 grading.module:936;981
+msgid "Waiting on some Lecturer Submissions for Semester Exam"
+msgstr ""
+
+#: gpa_footer.inc:85 grading.module:931;984
+msgid "All Lecturers have Submitted Semester Exam Results"
+msgstr ""
+
+#: gpa_footer.inc:86 grading.module:937;987
+msgid "All Departments have Approved Semester Exam Results"
+msgstr ""
+
+#: gpa_footer.inc:87 grading.module:938;1005;1027
+msgid "All Faculties have Approved Semester Exam Results"
+msgstr ""
+
+#: gpa_footer.inc:88 grading.module:939;1024
+msgid "Registrar has Approved Semester Exam Results"
+msgstr ""
+
+#: gpa_footer.inc:89 grading.module:940;1032
+msgid "Semester Exam Results Fully Approved"
+msgstr ""
+
+#: grading.module:658
+msgid "Show Grade Statistics and Approval Status for above selection"
+msgstr ""
+
+#: grading.module:921
+msgid "View Programme Details..."
+msgstr ""
+
+#: grading.module:945
+msgid "Departmental Grading Approval Status..."
+msgstr ""
+
+#: grading.module:1001;1019;1064
+msgid "Semester Exam"
+msgstr ""
+
+#: grading.module:1038
+msgid "THERE IS NO REGISTRAR, ONE MUST BE ASSIGNED"
+msgstr ""
+
+#: grading.module:1041
+msgid "THERE IS NO VICE CHANCELLOR, ONE MUST BE ASSIGNED"
+msgstr ""
+
+#: grading.module:1045;1049
+msgid "Click here to go to a Form for Approval of !gradestext for level !level"
+msgstr ""
+
+#: grading.module:1055
+msgid "Approval Details for all Courses taken by Students in this Department..."
+msgstr ""
+
+#: grading.module:1057
+msgid "Course URL"
+msgstr ""
+
+#: grading.module:1058
+msgid "Student's Programme"
+msgstr ""
+
+#: grading.module:1114
+msgid "Lecturers need to Submit"
+msgstr ""
+
+#: grading.module:1114
+msgid "Submitted by Lecturers"
+msgstr ""
+
+#: grading.module:1114
+msgid "Approved by Department"
+msgstr ""
+
+#: grading.module:1114
+msgid "Approved by Faculty"
+msgstr ""
+
+#: grading.module:1114
+msgid "Approved by Registrar"
+msgstr ""
+
+#: grading.module:1114
+msgid "Fully Approved"
+msgstr ""
+
+#: grading.module:1164
+msgid "Enter a comment on the grades for the Vice Chancellor"
+msgstr ""
+
+#: grading.module:1180;1363
+msgid "Approve !gradestext for level !level"
+msgstr ""
+
+#: grading.module:1191
+msgid "You must enter a comment for the Vice Chancellor!"
+msgstr ""
+
+#: grading.module:1273;1474
+msgid "!gradestext for !departmentlevelsessionsemester Approved by !name"
+msgstr ""
+
+#: grading.module:1282
+msgid "I have approved !gradestext"
+msgstr ""
+
+#: grading.module:1289
+msgid "Registrar's comment"
+msgstr ""
+
+#: grading.module:1348
+msgid "Enter a comment on the grades for the Record"
+msgstr ""
+
+#: grading.module:1746;2095;2178
+msgid "Programme"
+msgstr ""
+
+#: grading.module:1758
+msgid "Show Grade Statistics for above selection"
+msgstr ""
+
+#: grading.module:1782
+msgid "Submitted"
+msgstr ""
+
+#: grading.module:1827
+msgid "PROGRAMME"
+msgstr ""
+
+#: grading.module:1832
+msgid "DEPARTMENTAL"
+msgstr ""
+
+#: grading.module:1837
+msgid "FACULTY"
+msgstr ""
+
+#: grading.module:1842
+msgid "UNIVERSITY"
+msgstr ""
+
+#: grading.module:1848
+msgid "SUMMARY RESULTS"
+msgstr ""
+
+#: grading.module:1851
+msgid "LEVEL"
+msgstr ""
+
+#: grading.module:1855
+msgid "No. of Absent Students"
+msgstr ""
+
+#: grading.module:1933
+msgid "View Department Details (for level !level)..."
+msgstr ""
+
+#: grading.module:1963
+msgid "Student Name"
+msgstr ""
+
+#: grading.module:1976
+msgid "Student Matriculation Number"
+msgstr ""
+
+#: grading.module:1988
+msgid "Show all of the selected Student's Courses"
+msgstr ""
+
+#: grading.module:2068
+msgid "You must select either a Student Name or Matriculation Number"
+msgstr ""
+
+#: grading.module:2086
+msgid "You do Not have Rights to see data for this Student"
+msgstr ""
+
+#: grading.module:2091
+msgid "Courses for this Student"
+msgstr ""
+
+#: grading.module:2094
+msgid "Course"
+msgstr ""
+
+#: grading.module:2100
+msgid "CA1"
+msgstr ""
+
+#: grading.module:2101
+msgid "CA2"
+msgstr ""
+
+#: grading.module:2102
+msgid "CA3"
+msgstr ""
+
+#: grading.module:2103
+msgid "CA4"
+msgstr ""
+
+#: grading.module:2104
+msgid "Exam"
+msgstr ""
+
+#: grading.module:2105
+msgid "Total"
+msgstr ""
+
+#: grading.module:2106
+msgid "Grade"
+msgstr ""
+
+#: grading.module:2107
+msgid "Dropped?"
+msgstr ""
+
+#: grading.module:2108
+msgid "Comment"
+msgstr ""
+
+#: grading.module:2165
+msgid "Dropped"
+msgstr ""
+
+#: grading.module:2175
+msgid "GPAs for this Student"
+msgstr ""
+
+#: grading.module:2183
+msgid "Credit Load Registered"
+msgstr ""
+
+#: grading.module:2184
+msgid "Credit Load Completed"
+msgstr ""
+
+#: grading.module:2185
+msgid "GPA"
+msgstr ""
+
+#: grading.module:2186
+msgid "cGPA"
+msgstr ""
+
+#: grading.module:2259
+msgid "!gradestext for !programme Approved"
+msgstr ""
+
+#: grading.module:2267
+msgid "I have approved the !gradestext for !programme"
+msgstr ""
+
+#: grading.module:10
+msgid "View Course Grades"
+msgstr ""
+
+#: grading.module:19
+msgid "View Programme GPAs"
+msgstr ""
+
+#: grading.module:28
+msgid "View My Grades"
+msgstr ""
+
+#: grading.module:37
+msgid "Grading Departmental Stats"
+msgstr ""
+
+#: grading.module:52
+msgid "Grading University Stats"
+msgstr ""
+
+#: grading.module:81
+msgid "Grading Student Details"
+msgstr ""
+
+#: grading.info:0
+msgid "Grading"
+msgstr ""
+
+#: grading.info:0
+msgid "EduERP Grading Module"
+msgstr ""
+
+#: grading.info:0
+msgid "EduERP"
+msgstr ""
+

@@ -1,0 +1,269 @@
+<?php
+// $Id$
+
+include_once('student_clearance.features.inc');
+
+/**
+* Implementation of hook_menu()
+*
+*/
+function student_clearance_menu() {
+    $items = array();
+
+    $items['agreement/pdf/ahah'] = array(
+      'page callback' => 'student_clearance_pdf_agreement_ahah_callback',
+      'access callback' => TRUE,
+      'type' => MENU_CALLBACK,
+    );
+    $items['user/%user/clearance/%node/agreement'] = array(
+    'title' => 'View clearance agreement',
+    'description' => 'View clearance agreement.',
+    'page callback' => 'student_clearance_agreement_view',
+    'page arguments' => array(1, 3, 'agreement'),
+    'access arguments' => array('access content'),
+    #'access arguments' => array(1, 3),
+    'type' => MENU_CALLBACK,
+  );
+
+    return $items;
+}
+
+/**
+ * Implements hook_theme
+ */
+function student_clearance_theme() {
+  return array(
+    'student_clearance' => array(
+      'template' => 'student_clearance', # template hook
+      'path' => drupal_get_path('module', 'student_clearance') .'/templates',
+      'arguments' => array('uid' => NULL, 'node' => NULL, 'op' => 'view', 'template' => 'agreement'),
+    ),
+  );
+}
+
+function student_clearance_agreement_view($uid, $node, $view = 'agreement') {
+  if($view == 'agreement') {
+    $output = theme('student_clearance', $uid, $node, 'print', 'agreement');
+    $output .= '<div align="right" style="margin-top: 1em; margin-right: 1em;"><input type="button" value="'. t('Print') .'" onclick="window.print();" /> '
+              .'<input type="button" value="'. t('Close window') .'" onclick="window.close();" /></div>';
+    print $output;
+    exit();
+  }
+}
+
+function template_preprocess_student_clearance(&$variables) {
+  // Add template file suggestions, default to agreement template.
+
+  $content = variable_get('eduerp_agreement', '');
+
+  //$output = preg_replace_callback("|\[token ([^ ]*) ([^]]*)\]|i", 'student_clearance_filter_tokens', $node->body);
+  $body = token_replace($content, 'global');
+  $output = preg_replace_callback("|\[([^ ]*)\]|i", 'student_clearance_filter_tokens', $body);
+
+  $variables['content'] = $output;
+  $variables['template_files'] = array(
+    'student_clearance-'. $variables['template'],
+  );
+}
+
+/**
+ * We are rewriting the token code because token and token_filter
+ * modules cannot handle object of type node which is within a node
+ * body i.e node->body tokens can't be replaced at the moment
+ */
+function student_clearance_filter_tokens($matches) {
+  $token = $matches[0];
+  //$type  = $matches[1]; // we don't need the type
+  $token_plain = $matches[1];
+
+  $content = variable_get('eduerp_agreement', '');
+
+  $student = arg(1);
+  $staff = db_result(db_query("SELECT uid FROM {node} WHERE nid = %d", arg(3)));
+
+  $value = student_clearance_agreement_profile_items($student, $staff, $token_plain);
+
+  $output = str_replace($token, $value, $token);
+
+  return $output;
+}
+
+/**
+ * Get profile values for token replacement
+ *
+ * @todo Turn to first class objects to improve performance
+ */
+function student_clearance_agreement_profile_items($uid, $staff, $token) {
+  $student_uid = $uid;
+  $student = student_new_student($student_uid);
+  $clearance_staff = $staff;
+
+  $profile = content_profile_load('profile', $student_uid);
+  $student_profile = content_profile_load('student_profile', $student_uid);
+  $staff_profile = content_profile_load('staff_profile', $clearance_staff);
+
+  $program_nid = $student_profile->field_profile_first_choice[0]['nid'];
+  $dept_nid = $student->get_department_nid($program_nid);
+  $college_nid = $student->get_college_nid($dept_nid);
+
+  $values  = array(
+    'field_profile_first_name-raw' => $profile->field_profile_first_name[0]['value'],
+    'field_profile_middle_name-raw' => $profile->field_profile_middle_name[0]['value'],
+    'field_profile_last_name-raw' => $profile->field_profile_last_name[0]['value'],
+    'programme' => $student->get_programme($program_nid),
+    'level' => $student_profile->field_profile_level_name[0]['value'],
+    'faculty' => $student->get_faculty($college_nid),
+    'matric_number' => $student_profile->field_profile_matno[0]['value'],
+    'field_profile_signature-filefield-view' => $profile->profile_field_signature[0]['filepath'],
+    'site-date-timestamp-raw' => date('d-F-Y')
+  );
+  foreach($values as $key => $value) {
+    if($key == $token) {
+      return $value;
+    }
+  }
+}
+
+/**
+* Submit extra data together with the clearance agreement
+*
+* @see student_clearance_form_editablefields_form_alter
+*/
+function student_clearance_agree_submit($form, &$form_state) {
+	if($form_state['values']['field_agreement_agree']) {
+		//$form['field_agreement_agree']['#attributes'] = array('disabled' => 'disabled');
+		return;
+	}
+}
+
+/**
+* utility function to check to see if agreement is set
+*
+* @param node
+* @return boolean
+**/
+function student_clearance_agreement_isset($node) {
+	$sql = 'SELECT field_agreement_agree_value
+		FROM {content_type_clearance_agreement}
+		WHERE nid = %d';
+	$result = db_result(db_query($sql, $node->nid));
+	if(db_affected_rows($result) > 0) {
+		return TRUE;
+	}
+	return FALSE;
+}
+
+/**
+ * Implements hook_views_pre_render
+ */
+function student_clearance_views_pre_render(&$view) {
+  $node = node_load($view->result[0]->nid);
+  //token_replace_multiple($node->body, array('node' => $node, 'global' => NULL));
+}
+
+/**
+* Implementation of hook_nodeapi
+*
+*/
+function student_clearance_nodeapi(&$node, $op, $a3 = null, $a4 = null) {
+
+  switch($op) {
+    case 'presave':
+      $cached_node = cache_get('clearance_agreement_node');
+      if(isset($cached_node)) {
+        // Bug fix: remove the node from cache to allow it to be
+        // reloaded for other users
+        cache_clear_all('clearance_agreement_node', 'cache');
+      }
+      break;
+		case 'load':
+      $body = token_replace($node->body, 'global');
+      $output = preg_replace_callback("|\[([^ ]*)\]|i", 'student_clearance_filter_tokens', $body);
+      return $output;
+    case 'alter':
+      $body = token_replace($node->body, 'global');
+      $output = preg_replace_callback("|\[([^ ]*)\]|i", 'student_clearance_filter_tokens', $body);
+      //token_replace($node->body, 'global');
+      return $output;
+    case 'view':
+      cache_set('clearance_agreement_node', $node);
+      $body = token_replace($node->body, 'global');
+      $output = preg_replace_callback("|\[([^ ]*)\]|i", 'student_clearance_filter_tokens', $body);
+      return $output;
+	}
+}
+
+/**
+ * Implements hook_preprocess_views_view
+ */
+function student_clearance_preprocess_views_view(&$vars) {
+}
+
+/**
+ * Implements hook_preprocess_node
+ */
+function student_clearance_preprocess_node(&$vars) {
+  $body = token_replace($vars['body'], 'global');
+  $output = preg_replace_callback("|\[([^ ]*)\]|i", 'student_clearance_filter_tokens', $body);
+  $vars['body'] = $output;
+}
+
+/**
+ * Implements hook_link
+ */
+function student_clearance_link($type, $node = NULL, $teaser = FALSE) {
+
+  if($type == 'node' && $node->type == 'clearance_agreement') {
+    $student_id = $node->field_student[0]['uid'];
+     $links['node_print_agreement'] = array(
+        'title' => t('Print Agreement'),
+        'href' => "user/$student_id/clearance/$node->nid/agreement/print",
+        // The title attribute gets escaped when the links are processed, so
+        // there is no need to escape here.
+        'attributes' => array(
+          'title' => t('!title.', array('!title' => $node->title)),
+          'target' => '_blank'
+        )
+      );
+  }
+  return $links;
+}
+
+/**
+* Implementation of hook_init()
+*
+* Marking as WON'T FIX
+*
+* @todo trigger a pdf download instead of browser display.
+* Implement hook_file_download to get this done.
+*/
+function todo_student_clearance_init() {
+	global $user;
+	$arg = (arg(0) == 'student' && arg(1) == 'agreement' && arg(2) == 'pdf' && is_numeric(arg(3)));
+	if($arg) {
+		$student_id = isset($student_id) ? $student_id : student_views_get_current_student();
+		// use regex here
+		$path = 'http://eduerp/student/agreement/pdf/958';
+		if($fd = fopen($path, "r")) {
+			$fsize = filesize($path);
+			$path_parts = pathinfo($path);
+			$ext = strtolower($path_parts["extension"]);
+			switch($ext) {
+				case "pdf":
+					drupal_set_header("Cache-Control:public, must-revalidate, max-age=0");
+					drupal_set_header("Content-Disposition: attachment; filename=\"".$path_parts["filename"]."\"");
+					drupal_set_header("Content-Disposition: attachment; filename='clearance_agreement';");
+					drupal_set_header("Content-type: application/pdf");
+					break;
+			}
+			drupal_set_header("Content-length: $fsize");
+			drupal_set_header("Cache-control: private"); //use this to open files directly
+			while(!feof($fd)) {
+					$buffer = fread($fd, 2048);
+					echo $buffer;
+			}
+		}
+		fclose ($fd);
+		exit;
+	}
+}

@@ -1,0 +1,94 @@
+<?php 
+
+require_once drupal_get_path('module', 'uc_eduerp_fees') . '/includes/utils.inc';
+
+/**
+* @file
+* Simpletest for uc_eduerp_fees module
+*/
+
+/**
+* There are four basic steps involved in building a test:
+*
+* Creating the structure (just creating a class that inherits from DrupalWebTestCase)
+* Initializing the test case with whatever user creation or configuration needs to be done
+* Creating actual tests within the test case
+* And, of course, trying desperately to figure out why our test doesn't work the way we expect, and debugging the test (and perhaps the module)
+*/
+
+class UCEduerpFeesTestCase extends DrupalWebTestCase {
+  protected $privileged_user;
+
+  /**
+   * getInfo() returns properties that are displayed in the test selection form.
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'UCEduerpFees SimpleTest',
+      'description' => 'Ensures that fees are added to cart and orders are handled successfully.',
+      'group' => 'Eduerp',
+    );
+  }
+  
+  /**
+   * setUp() performs any pre-requisite tasks that need to happen. 
+   */
+  public function setUp() {
+    // Enable any modules required for the test.
+    parent::setUp('uc_eduerp_fees, uc_cart, staff, uc_edupay');
+
+    // Create and log in our privileged user.
+    $this->privileged_user = $this->drupalCreateUser( array(
+      'administer site configuration')
+    );
+    $this->drupalLogin($this->privileged_user);
+  }
+  
+  /**
+   * Test loading of a fees item when status changes to 
+   * payment_received.
+   * 
+   * uc_eduerp_fees_update_load
+   */ 
+  public function testHookUpdateLoad(){
+    
+  }
+  
+  /**
+   * uc_eduerp_fees_update_fees function test
+   */ 
+  public function testUpdateFeesPaidOperation() {
+    $values = array(
+      'uid' => 955,
+      'service' => 'status',
+      'type' => 'fees',// fees or hostel
+      'status' => 'payment_received',
+      'tpin' => '3810f5f5a8b14fc99ea9ac45cabceb2f',
+      'order_id' => 388
+    );
+    
+    $result = uc_eduerp_fees_update_fees($values);
+    $this->assertEqual($result, t('fees paid'));
+  }
+  
+  public function testArrayInArrayUtil() {
+    $types_arr = array('fees', 'hostel');
+    $data = array('fees', 'fees', 'hostel');
+    
+    $result = array_in_array($types_arr, $data);
+    $this->assertTrue($types_arr, $result);
+  }
+  
+  /**
+   * Functional test of uc_edupay_fees_order_get_item
+   */ 
+  public function testFeesOrderItems() {
+    
+  /*dsm(uc_edupay_fees_order_get_item('type'));
+  foreach (uc_edupay_fees_order_get_item('sponsor') as $key => $sponsor) {
+    $options[$key] = $sponsor['sponsor'];
+  }
+  dsm($options);*/
+  
+  }
+}
